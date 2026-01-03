@@ -48,17 +48,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     if(empty($nameErr) && empty($userErr) && empty($emailErr) && empty($passErr) && empty($confPassErr)){
         $checkDuplicate = "SELECT * FROM users WHERE email = '$email' OR username = '$username'";
-        $duplicateresult = $conn->query($checkDuplicate);
-        if($duplicateresult && $duplicateresult->num_rows >0){
+        $duplicateresult = mysqli_query($conn, $checkDuplicate);
+        if($duplicateresult && mysqli_num_rows($duplicateresult)>0){
             $error = "Username or email already exists";
         }
         else{
 
             $hassPassword= password_hash($password,PASSWORD_DEFAULT);
             $sql = "INSERT INTO users (full_name, username, email, password) VALUES ('$fullname','$username', '$email', '$hassPassword')";
-            if($conn->query($sql)){
+            if(mysqli_query($conn, $sql)){
                 $_SESSION['username']=$username;
-                setcookie("userlofin",$username, time()+86400, "/");
+                setcookie("userlogin",$username, time()+86400, "/");
                 header("Location: login.php");
                 exit();
             }
@@ -66,7 +66,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     }
     else {
-        $error = "Registration failled :" .$conn->error;
+        $error = "Registration failled :" .mysqli_error($conn);
     }
 }
 
