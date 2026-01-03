@@ -5,17 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard - Nilkham</title>
-    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/dashboard_page/dashboard.css">
+   <link rel="stylesheet" href="../css/dashboard_page/kpi.css">
+    <link rel="stylesheet" href="../css/dashboard_page/statistics.css">
+
 
 </head>
 <body>
     <div class="dashboard-container">
-        
-        
         <main class ="main-content">
-            
-                
-                <div class="dashboard-content">
+            <div class="dashboard-content">
                     <h2>Dashboard</h2>
 
                     <div class="statistics-section-dashboard">
@@ -40,9 +39,41 @@
                         </div>
                     </div>
                     
+                <div class="kpi-grid">
+                    <div class="kpi-card">
+                        <div class="kpi-icon">👥</div>
+                        <div class="kpi-info">
+                            <h3>Total Members</h3>
+                            <p class="kpi-value"><?php echo $totalMembers; ?></p>
+                        </div>
+                    </div>
+                    <div class="kpi-card">
+                            <div class="kpi-icon">📋</div>
+                        <div class="kpi-info">
+                            <h3>Total Jobs</h3>
+                            <p class="kpi-value"><?php echo $totalJobsKpi; ?></p>
+                        </div>
+                    </div>
+                    
+                    <div class="kpi-card">
+                        <div class="kpi-icon">📝</div>
+                        <div class="kpi-info">
+                            <h3>Pending Applications</h3>
+                            <p class="kpi-value"><?php echo $pendingApplications; ?></p>
+                        </div>
+                    </div>
+                     <div class="kpi-card">
+                        <div class="kpi-icon">💰</div>
+                        <div class="kpi-info">
+                            <h3>Total Payments</h3>
+                            <p class="kpi-value">$<?php echo $totalPayments; ?></p>
+                        </div>
+                    </div>
                 </div>
+            </div>   
         </main>
-    </div>
-        <script src="../js/dashboard.php"></script>
+
+</div>
+    <script src="../js/dashboard.php"></script>
 </body>
 </html>

@@ -27,3 +27,18 @@ $jobRow = $jobResult->fetch_assoc();
 $totalJobs = $jobRow['total'] ?? 0;
 
 
+$totalJobsKpi = $totalJobs;
+$totalMembersSql = "SELECT COUNT(*) as total FROM users";
+$totalMembersResult = $conn->query($totalMembersSql);
+$totalMembersRow = $totalMembersResult->fetch_assoc();
+$totalMembers = $totalMembersRow['total'] ?? 0;
+
+$pendingAppsSql = "SELECT COUNT(*) as total FROM job_applications WHERE status = 'pending'";
+$pendingAppsResult = $conn->query($pendingAppsSql);
+$pendingAppsRow = $pendingAppsResult->fetch_assoc();
+$pendingApplications = $pendingAppsRow['total'] ?? 0;
+
+$totalPaymentsSql = "SELECT SUM(amount) as total FROM payments";
+$totalPaymentsResult = $conn->query($totalPaymentsSql);
+$totalPaymentsRow = $totalPaymentsResult->fetch_assoc();
+$totalPayments = number_format($totalPaymentsRow['total'] ?? 0, 2);
