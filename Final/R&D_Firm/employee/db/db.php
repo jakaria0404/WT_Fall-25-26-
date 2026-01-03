@@ -11,6 +11,4 @@ if($conn->connect_error)
     die("Connect lost". $conn->connect_error);        
 }
  
- 
- 
 ?>
