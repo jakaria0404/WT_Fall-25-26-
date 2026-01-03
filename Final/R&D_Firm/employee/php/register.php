@@ -47,13 +47,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
     if(empty($nameErr) && empty($userErr) && empty($emailErr) && empty($passErr) && empty($confPassErr)){
-        $hassPassword= password_hash($password,PASSWORD_DEFAULT);
-        $sql = "INSERT INTO users (full_name, username, email, password) VALUES ('$fullname','$username', '$email', '$hassPassword')";
-        if($conn->query($sql)){
-            $_SESSION['username']=$username;
-            setcookie("userlofin",$username, time()+86400, "/");
-            header("Location: login.php");
-            exit();
+        $checkDuplicate = "SELECT * FROM users WHERE email = '$email' OR username = '$username'";
+        $duplicateresult = $conn->query($checkDuplicate);
+        if($duplicateresult && $duplicateresult->num_rows >0){
+            $error = "Username or email already exists";
+        }
+        else{
+
+            $hassPassword= password_hash($password,PASSWORD_DEFAULT);
+            $sql = "INSERT INTO users (full_name, username, email, password) VALUES ('$fullname','$username', '$email', '$hassPassword')";
+            if($conn->query($sql)){
+                $_SESSION['username']=$username;
+                setcookie("userlofin",$username, time()+86400, "/");
+                header("Location: login.php");
+                exit();
+            }
         }
 
     }
