@@ -1,13 +1,8 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Registration with PHP Validation</title>
-    <link rel="stylesheet" href="../css/register.css">
-</head>
-
-<body>
-
 <?php
+session_start();
+include "../db/db.php";
+$success="";
+$error="";
 $fullname = $username = $email = $password = $confirm_password = "";
 $nameErr = $userErr = $emailErr = $passErr = $confPassErr = "";
 
@@ -51,6 +46,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $confPassErr = "Passwords do not match";
         }
     }
+    if(empty($nameErr) && empty($userErr) && empty($emailErr) && empty($passErr) && empty($confPassErr)){
+        $hassPassword= password_hash($password,PASSWORD_DEFAULT);
+        $sql = "INSERT INTO users (full_name, username, email, password) VALUES ('$fullname','$username', '$email', '$hassPassword')";
+        if($conn->query($sql)){
+            $_SESSION['username']=$username;
+            setcookie("userlofin",$username, time()+86400, "/");
+            header("Location: login.php");
+            exit();
+        }
+
+    }
+    else {
+        $error = "Registration failled :" .$conn->error;
+    }
 }
 
 function test_input($data) {
@@ -58,9 +67,17 @@ function test_input($data) {
     return $data;
 }
 ?>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registration with PHP Validation</title>
+    <link rel="stylesheet" href="../css/register.css">
+</head>
+
+<body>
 
 <div class="register-container">
-    <form method="post" action="login.php">
+    <form method="post" action="">
         <h1>Register</h1>
         <p>Please fill in this form to create an account.</p>
         <hr>
