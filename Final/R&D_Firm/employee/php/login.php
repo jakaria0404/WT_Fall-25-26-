@@ -1,3 +1,39 @@
+<?php
+session_start();
+include "../db/db.php";
+
+if(isset($_SESSION["username"])){
+    header("Location: dashboard.php");
+    exit();
+}
+$error = "";
+$username="";
+$usererror="";
+$passerror="";
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $user = $_POST["username"];
+    $password = $_POST["password"];
+
+    $sql = "SELECT * FROM USERS WHERE username = '$user'";
+    $result = mysqli_query($conn,$sql);
+    if(mysqli_num_rows($result)>0){
+        $row = mysqli_fetch_assoc($result);
+        if(password_verify($password, $row['password'])){
+            $_SESSION['username'] = $row['username'];
+            header("Location: dashboard.php");
+            exit();
+        }
+        else{
+            $error = "Invalid password";
+        }
+    }
+    else{
+        $error = "No user found with that username";
+    }
+
+}
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,30 +41,6 @@
     <link rel="stylesheet" href="../css/Login.css">
 </head>
 <body>
-
-<?php
-$username = "";
-$usererror = "";
-$passerror = "";
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
-    if (empty($_POST["username"])) {
-        $usererror = "Username is req";
-    } else {
-        $username = test_input($_POST["username"]);
-    }
-
-    if (empty($_POST["password"])) {
-        $passerror = "Password is req";
-    }
-}
-
-function test_input($data) {
-    $data = trim($data);
-    return $data;
-}
-?>
 
 <div class="login-container">
     <h1>Login</h1>
