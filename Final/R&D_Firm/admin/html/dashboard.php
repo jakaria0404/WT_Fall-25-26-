@@ -9,6 +9,7 @@
    <link rel="stylesheet" href="../css/dashboard_page/kpi.css">
     <link rel="stylesheet" href="../css/dashboard_page/statistics.css">
     <link rel="stylesheet" href="../css/dashboard_page/header.css">
+    <link rel="stylesheet" href="../css/dashboard_page/sidebar.css ">
 
 
 

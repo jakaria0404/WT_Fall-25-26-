@@ -1,0 +1,28 @@
+.sidebar {
+    width: 250px;
+    background: #1a1a1a;
+    color: #fff;
+    position: fixed;
+    height: 100vh;
+    overflow-y: auto;
+}
+.sidebar-header {
+    padding: 1.5rem;
+    background: #2a2a2a;
+    border-bottom: 5px solid #333;
+}
+.sidebar-header h2 {
+    color: #82e007;
+    font-size: 1.5rem;
+}
+.sidebar-nav {
+    padding: 1rem 0;
+}
+.nav-section ul {
+    list-style: none;
+}
+.nav-section li {
+    padding: 0.8rem 1.5rem;
+    cursor: pointer;
+    transition: background 0.3s;
+}
