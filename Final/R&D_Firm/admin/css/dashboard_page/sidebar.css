@@ -18,11 +18,7 @@
 .sidebar-nav {
     padding: 1rem 0;
 }
-.nav-section ul {
-    list-style: none;
-}
+
 .nav-section li {
     padding: 0.8rem 1.5rem;
-    cursor: pointer;
-    transition: background 0.3s;
 }
