@@ -2,6 +2,9 @@
 <html>
 <head>
     <title>Registration with PHP Validation</title>
+    <link rel="stylesheet" href="../css/register.css">
+</head>
+
 <body>
 
 <?php
