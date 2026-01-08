@@ -57,8 +57,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $hassPassword= password_hash($password,PASSWORD_DEFAULT);
             $sql = "INSERT INTO users (full_name, username, email, password) VALUES ('$fullname','$username', '$email', '$hassPassword')";
             if(mysqli_query($conn, $sql)){
-                $_SESSION['username']=$username;
-                setcookie("userlogin",$username, time()+86400, "/");
                 header("Location: login.php");
                 exit();
             }
@@ -78,6 +76,7 @@ function test_input($data) {
 <!DOCTYPE html>
 <html>
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registration with PHP Validation</title>
     <link rel="stylesheet" href="../css/register.css">
 </head>
@@ -111,6 +110,8 @@ function test_input($data) {
         <span class="error"><?php echo $confPassErr;?></span>
 
         <button type="submit" name="submit" class="registerbtn">Register</button>
+        <a href="login.php" class="backbtn">Back to Login</a>
+
     </form>
 
 

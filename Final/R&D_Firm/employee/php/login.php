@@ -48,6 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <!DOCTYPE html>
 <html>
 <head>
+    <meta name="viewport" 
     <title>Login Page</title>
     <link rel="stylesheet" href="../css/Login.css">
 </head>

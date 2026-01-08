@@ -9,38 +9,48 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 60px;
+    padding: 20px 40px;
 }
 
 .navbar h2 {
     color: #4CAF50;
-    font-family: Arial, sans-serif;
+    font-family: Arial;
     font-size: 30px;
-    font-weight: bold;
-    margin: 0;
+    margin:0;
 }
 
 .container {
     list-style: none;
-    display: flex;
     gap: 35px;
     margin: 0;
     padding: 0;
+    display:flex;
 }
 
 .container li a {
     color: #ffffff;
     text-decoration: none;
-    font-family: Arial, sans-serif;
+    font-family: Arial;
     font-size: 18px;
-    cursor: pointer;
-    transition: 0.3s;
+    cursor: pointer;  
 }
 
 .container li a:hover {
     color: #4CAF50;
 }
-.logout_btn{
-    background-color : #45a049;
-    text-decoration : none;
+
+
+.logout_btn {
+    display: inline-block;
+    background-color: #45a049;
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 20px;
+    margin: 20px 60px;
+    border-radius: 5px;
+    font-family: Arial;
+}
+
+.logout_btn:hover {
+    background-color: #388e3c;
 }
