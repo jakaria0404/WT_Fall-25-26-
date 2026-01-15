@@ -16,7 +16,7 @@
 </head>
 <body>
     <div class="dashboard-container">
-        <?php include "../html/sidebar.php"; ?>
+        <?php include "sidebar.php"; ?>
         <main class ="main-content">
             <?php include "../js/header.php"; ?>
         <header class="top-bar">
@@ -26,7 +26,7 @@
                         <div class="top-bar-right">
                             <a href="../../index.php">Home</a>
                          <div class="dropdown">
-                                <a href="#" class="dropdown-toggle" onclick="toggleHeaderDropdown(event)">Profile <span>▼</span></a>
+                                <a href="#" class="dropdown-toggle" onclick="toggleHeaderDropdown(event)">Profile <span>🔽</span></a>
                                     <ul class="dropdown-menu">
                                         <li><a href="profile.php">Profile</a></li>
                                         <li><a href="dashboard.php">Admin Control</a></li>
