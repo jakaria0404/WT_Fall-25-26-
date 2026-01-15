@@ -1,3 +1,20 @@
+<header class="top-bar">
+    <div class="top-bar-left">
+        <h1>WELCOME!</h1>
+    </div>
+    <div class="top-bar-right">
+        <a href="../../index.php" class="home-button">Home</a>
+        <div class="dropdown">
+            <a href="#" class="dropdown-toggle" onclick="toggleHeaderDropdown(event)">Profile <span>▼</span></a>
+            <ul class="dropdown-menu">
+                <li><a href="profile.php">Profile</a></li>
+                <li><a href="dashboard.php">Dashboard</a></li>
+                <li><a href="../../auth/logout.php">Logout</a></li>
+            </ul>
+        </div>
+    </div>
+</header>
+
 <script>
 
 function closeAllDropdowns() {
