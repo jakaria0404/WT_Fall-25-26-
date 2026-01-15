@@ -9,7 +9,7 @@
    <link rel="stylesheet" href="../css/dashboard_page/kpi.css">
     <link rel="stylesheet" href="../css/dashboard_page/statistics.css">
     <link rel="stylesheet" href="../css/dashboard_page/header.css">
-    <link rel="stylesheet" href="../css/dashboard_page/sidebar.css ">
+    <link rel="stylesheet" href="../css/dashboard_page/sidebar.css">
 
 
 
@@ -46,16 +46,16 @@
                                 <p>Total Applications</p>
                             </div>
                             <div class="stat-card-dashboard">   
-                                <h3><?php echo $totalJobs; ?><h3>
+                                <h3><?php echo $totalJobs; ?></h3>
                                 <p>Total Job Posted</p>
                             </div>
                             <div class="stat-card-dashboard">
-                                <h3><?php echo $totalEmployees; ?><h3>
-                                <p>Total Employees<p>
+                                <h3><?php echo $totalEmployees; ?></h3>
+                                <p>Total Employees</p>
                             </div>
                             <div class="stat-card-dashboard">
-                                <h3><?php echo $completedProjects; ?><h3>
-                                <p> Firm's Total Completed Projects <p>
+                                <h3><?php echo $completedProjects; ?></h3>
+                                <p> Firm's Total Completed Projects </p>
                             </div>
                         </div>
                     </div>
