@@ -1,6 +1,6 @@
 <header class="top-bar">
     <div class="top-bar-left">
-        <h1>WELCOME!</h1>
+        <h1>WELCOME! ADMIN CONTROL</h1>
     </div>
     <div class="top-bar-right">
         <a href="../../index.php" class="home-button">Home</a>
