@@ -16,6 +16,9 @@
             <?php include "header.php"; ?>
             <div class="page-content">
             <h2>Post a Job</h2>
+
+            <form method="post" action="" class="job-form">
+                <div class="form-group">
             <label>Job Title:</label>
                     <input type="text" name="title" value="" required>
                 </div>
