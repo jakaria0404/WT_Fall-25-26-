@@ -7,7 +7,7 @@ if(!isset($_SESSION['username'])){
 }
 $currentUser = $_SESSION['username'];
 if($_SERVER["REQUEST_METHOD"]=="POST"){
-    $new_name = $_POST['full_name'];
+    $new_name = $_POST['name'];
     $new_email = $_POST['email'];
     $new_username = $_POST['username'];
     $sql = "UPDATE users SET full_name = '$new_name', email = '$new_email', username ='$new_username'WHERE username = '$currentUser'";
@@ -51,11 +51,15 @@ $user = mysqli_fetch_assoc($result);
             <form method = "POST">
                 <div class = "group">
                     <label>Full Name</label>
-                    <input type = "text" name = "full_name" value="<?php echo $user['full_name'] ?? ''?>"> 
+                    <input type = "text" name = "name" value="<?php echo $user['full_name'] ?? ''?>"> 
+                </div>
+                 <div class = "group">
+                    <label>Username</label>
+                    <input type = "text" name = "username" value="<?php echo $user['username'] ?? ''?>"> 
                 </div>
                 <div class = "group">
                     <label>Email</label>
-                    <input type = "email" name = "full_name" value="<?php echo $user['email'] ?? ''?>"> 
+                    <input type = "email" name = "email" value="<?php echo $user['email'] ?? ''?>"> 
                 </div>
                 <button type ="submit" class="btn">Save Changes</button>
             
