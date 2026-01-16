@@ -1,3 +1,4 @@
+<?php include "../php/job_posting.php"; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,7 +15,7 @@
         <?php include "sidebar.php"; ?>
         <main class="main-content">
             <?php include "header.php"; ?>
-            <div class="page-content">
+        <div class="page-content">
             <h2>Post a Job</h2>
 
             <form method="post" action="" class="job-form">
@@ -44,8 +45,40 @@
                 
                 <button type="submit" class="submit-btn">Post Job</button>
             </form>
+
             
+        <h3>Posted Jobs</h3> 
+         <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Type</th>
+                        <th>Created</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php if (count($jobs) > 0): ?>
+                        <?php foreach ($jobs as $row): ?>
+                            <tr>
+                                <td><?php echo htmlspecialchars($row['title']); ?></td>
+                                <td><?php echo ucfirst($row['type']); ?></td>
+                                <td><?php echo date('Y-m-d', strtotime($row['created_at'])); ?></td>
+                                <td>
+                                    <a href="?edit=<?php echo $row['id']; ?>" class="edit-link">Edit</a> |
+                                    <a href="?delete=1&id=<?php echo $row['id']; ?>" onclick="return confirm('Are you sure?')" class="delete-link">Delete</a>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <tr><td colspan="4">No jobs posted yet</td></tr>
+                    <?php endif; ?>
+                </tbody>
+            </table>
 
-
+      </div>
+        </main>
+    </div>
 </body>
 </html>
+
