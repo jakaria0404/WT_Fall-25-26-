@@ -55,6 +55,11 @@
                     ❌ <?php echo htmlspecialchars($error); ?>
                 </p>
             <?php endif; ?>
+               <?php if ($deleted): ?>
+                <p style="color:green; padding: 1rem; background: #e8f5e9; border-left: 4px solid #4caf50; border-radius: 4px; margin-bottom: 1rem;">
+                    ✅ Job deleted successfully!
+                </p>
+            <?php endif; ?>
 
             <h3>Posted Jobs</h3>
             <table class="data-table">

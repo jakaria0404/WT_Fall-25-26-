@@ -66,4 +66,6 @@ if ($jobsResult && mysqli_num_rows($jobsResult) > 0) {
         $jobs[] = $row;
     }
 }
+
+$deleted = isset($_GET['deleted']);
 ?>
