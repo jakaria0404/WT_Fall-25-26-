@@ -21,7 +21,7 @@
             <form method="post" action="" class="job-form">
                 <div class="form-group">
             <label>Job Title:</label>
-                    <input type="text" name="title" value="" required>
+                    <input type="text" name="title" required>
                 </div>
                 
                 <div class="form-group">
@@ -46,14 +46,14 @@
                 <button type="submit" class="submit-btn">Post Job</button>
             </form>
 
-            
-        <h3>Posted Jobs</h3> 
-         <table class="data-table">
+        <h3>Posted Jobs</h3>
+            <table class="data-table">
                 <thead>
                     <tr>
                         <th>Title</th>
                         <th>Type</th>
                         <th>Created</th>
+                        <th>Created By</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -64,14 +64,15 @@
                                 <td><?php echo htmlspecialchars($row['title']); ?></td>
                                 <td><?php echo ucfirst($row['type']); ?></td>
                                 <td><?php echo date('Y-m-d', strtotime($row['created_at'])); ?></td>
+                                <td>R&D Firm Author</td>
                                 <td>
-                                    <a href="?edit=<?php echo $row['id']; ?>" class="edit-link">Edit</a> |
-                                    <a href="?delete=1&id=<?php echo $row['id']; ?>" onclick="return confirm('Are you sure?')" class="delete-link">Delete</a>
+                                    <a href="?edit=<?php echo $row['job_id']; ?>" class="edit-link">Edit</a> |
+                                    <a href="?delete=1&id=<?php echo $row['job_id']; ?>" onclick="return confirm('Are you sure?')" class="delete-link">Delete</a>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
                     <?php else: ?>
-                        <tr><td colspan="4">No jobs posted yet</td></tr>
+                        <tr><td colspan="5">No jobs posted yet</td></tr>
                     <?php endif; ?>
                 </tbody>
             </table>
