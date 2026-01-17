@@ -88,3 +88,26 @@ body {
     gap: 20px;
     flex-wrap: wrap;
 }
+
+.part {
+    background: #fff;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    flex: 1;
+    min-width: 200px;
+    text-align: center;
+}
+
+.part h3 {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+}
+
+.value {
+    font-size: 32px;
+    font-weight: bold;
+    color: #4CAF50;
+}
