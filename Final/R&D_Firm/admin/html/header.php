@@ -17,40 +17,28 @@
 
 <script>
 
-function closeAllDropdowns() {
-    document.querySelectorAll('.dropdown-menu').forEach(menu => {
-        menu.classList.remove('show');
-    });
-}
-
-
 function toggleHeaderDropdown(event) {
-    
-    event.preventDefault(); 
-    
-    event.stopPropagation(); 
+    event.preventDefault();
+    event.stopPropagation();
 
-    const dropdown = event.currentTarget.closest('.dropdown');
-    const menu = dropdown.querySelector('.dropdown-menu');
+    let menu = event.currentTarget.nextElementSibling;
+    let allMenus = document.querySelectorAll('.dropdown-menu');
 
-    if (menu) {
-        const isOpen = menu.classList.contains('show');
-        
-        
-        closeAllDropdowns();
+    allMenus.forEach(m => {
+        if (m !== menu) m.classList.remove('show');
+    });
 
-      
-        if (!isOpen) {
-            menu.classList.add('show');
-        }
-    }
+    menu.classList.toggle('show');
 }
 
-
-document.addEventListener('click', (event) => {
-    
-    if (!event.target.closest('.dropdown')) {
-        closeAllDropdowns();
+window.onclick = function(event) {
+    if (!event.target.matches('.dropdown-toggle')) {
+        let dropdowns = document.querySelectorAll('.dropdown-menu');
+        dropdowns.forEach(menu => {
+            if (menu.classList.contains('show')) {
+                menu.classList.remove('show');
+            }
+        });
     }
-});
+}
 </script>
