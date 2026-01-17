@@ -15,6 +15,29 @@
             <?php include "header.php"; ?>
             <div class="page-content">
             <h2>Assign Task</h2>
+                                
+            <form method="post" action="" class="task-form">
+                <div class="form-group">
+                    <label>Task Title:</label>
+                    <input type="text" name="title" value="" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Description:</label>
+                    <textarea name="description" rows="5" required></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label>Assign To:</label>
+        
+                        <input type="text" id="employeeSearch" placeholder="Search by Employee ID (NK-XXX-YY)...">
+                <div class="form-group">
+                    <label>Deadline (Optional):</label>
+                    <input type="date" name="deadline">
+                </div>
+                
+                <button type="submit" class="submit-btn">Assign Task</button>
+            </form>
             
 </body>
 </html>
