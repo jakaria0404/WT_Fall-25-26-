@@ -67,3 +67,24 @@ $result = mysqli_query($conn, $sql);
         <?php
         $sql_tasks = "SELECT * FROM tasks WHERE employee_id = '$emp_unique_id' AND status != 'completed'";
         $result_tasks = mysqli_query($conn, $sql_tasks);
+
+                if (mysqli_num_rows($result_tasks) > 0) {
+            while ($row = mysqli_fetch_assoc($result_tasks)) {
+        ?>
+            <div class="card">
+                <h3><?php echo $row['title']; ?></h3>
+                <p><?php echo $row['description']; ?></p>
+                <p><strong>Status:</strong> <?php echo strtoupper($row['status']); ?></p>
+                
+                <div style="margin-top:10px;">
+                    <?php if ($row['status'] == 'pending'): ?>
+                        <a href="?update_status=1&id=<?php echo $row['id']; ?>&status=in_progress" class="btn">Start Work</a>
+                    <?php else: ?>
+                        <form method="POST">
+                            <input type="hidden" name="task_id" value="<?php echo $row['id']; ?>">
+                            <input type="text" name="submission">
+                            <button type="submit" name="submit_task" class="btn">Submit Project</button>
+                        </form>
+                    <?php endif; ?>
+                </div>
+            </div>
