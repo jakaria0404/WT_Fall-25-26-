@@ -72,21 +72,6 @@ body {
     color: #555;
     font-size: 14px; 
 }
-
-.logout_btn {
-    display: inline-block;
-    background-color: #45a049;
-    color: #fff;
-    text-decoration: none;
-    padding: 10px 20px;
-    margin: 20px 60px;
-    border-radius: 5px;
-    font-family: Arial;
-}
-
-.logout_btn:hover {
-    background-color: #388e3c;
-}
 .apply_btn {
     display: block;
     background-color: #388e3c;
