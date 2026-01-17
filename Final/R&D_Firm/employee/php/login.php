@@ -3,7 +3,7 @@ session_start();
 include "../db/db.php";
 
 if(isset($_SESSION["username"])){
-    header("Location: dashboard.php");
+    header("Location: home.php");
     exit();
 }
 $error = "";
@@ -48,8 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <!DOCTYPE html>
 <html>
 <head>
-    <meta name="viewport" 
-    <title>Login Page</title>
+    <title></title>Login Page</title>
     <link rel="stylesheet" href="../css/Login.css">
 </head>
 <body>
@@ -73,10 +72,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <span class="error"><?php echo $passerror; ?></span>
 
         <input type="submit" name="submit" value="Login" class="loginbtn">
-        
-        <div class="footer-links">
-            <p>New here?</p>
-            <a href="register.php" class="create-btn">Create New Account</a>
+        <div class="footer-links"> 
+        <p>New here?</p>
+        <a href="register.php" class="create-btn">Create New Account</a>
         </div>
     </form>
 </div>
