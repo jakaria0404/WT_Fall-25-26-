@@ -55,7 +55,7 @@
                     ❌ <?php echo htmlspecialchars($error); ?>
                 </p>
             <?php endif; ?>
-               
+
             <h3>Posted Jobs</h3>
             <table class="data-table">
                 <thead>
@@ -76,7 +76,6 @@
                                 <td><?php echo date('Y-m-d', strtotime($row['created_at'])); ?></td>
                                 <td>R&D Firm Author</td>
                                 <td>
-                                    <a href="?edit=<?php echo $row['job_id']; ?>" class="edit-link">Edit</a> |
                                     <a href="?delete=1&id=<?php echo $row['job_id']; ?>" onclick="return confirm('Are you sure?')" class="delete-link">Delete</a>
                                 </td>
                             </tr>
