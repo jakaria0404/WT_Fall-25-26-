@@ -19,6 +19,7 @@
         <?php include "sidebar.php"; ?>
         <main class ="main-content">
             <?php include "header.php"; ?>
+            
             <div class="dashboard-content">
                     <h2>Dashboard</h2>
 
@@ -55,8 +56,8 @@
                     <div class="kpi-card">
                             <div class="kpi-icon">📋</div>
                         <div class="kpi-info">
-                            <h3>Total Jobs</h3>
-                            <p class="kpi-value"><?php echo $totalJobsKpi; ?></p>
+                            <h3>Total Tasks</h3>
+                            <p class="kpi-value"><?php echo $totalTasks; ?></p>
                         </div>
                     </div>
                     

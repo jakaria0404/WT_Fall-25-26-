@@ -3,7 +3,7 @@
         <h1>WELCOME! ADMIN CONTROL</h1>
     </div>
     <div class="top-bar-right">
-        <a href="../../index.php" class="home-button">Home</a>
+        <a href="../../Home/index.php" class="home-button">Home</a>
         <div class="dropdown">
             <a href="#" class="dropdown-toggle" onclick="toggleHeaderDropdown(event)">Profile <span>▼</span></a>
             <ul class="dropdown-menu">

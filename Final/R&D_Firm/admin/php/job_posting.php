@@ -1,14 +1,6 @@
 <?php
 include "../db/db.php";
 
-
-function test_input($data) {
-    $data = trim($data);
-    $data = stripslashes($data);
-    $data = htmlspecialchars($data);
-    return $data;
-}
-
 $success = "";
 $error = "";
 $title = "";
@@ -43,20 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !isset($_POST['edit_job'])) {
         mysqli_stmt_close($stmt);
     }
 }
-if (isset($_GET['delete']) && isset($_GET['id'])) {
-    $jobId = $_GET['id'];
-    $sql = "DELETE FROM job_posts WHERE job_id = ?";
-    $stmt = mysqli_prepare($conn, $sql);
-    mysqli_stmt_bind_param($stmt, "i", $jobId);
-    
-    if (mysqli_stmt_execute($stmt)) {
-        header("Location: job_posting.php?deleted=1");
-        exit;
-    } else {
-        $error = "Error: " . mysqli_error($conn);
-    }
-    mysqli_stmt_close($stmt);
-}
+
 
 $jobsSql = "SELECT * FROM job_posts ORDER BY created_at DESC";
 $jobsResult = mysqli_query($conn, $jobsSql);
@@ -66,6 +45,4 @@ if ($jobsResult && mysqli_num_rows($jobsResult) > 0) {
         $jobs[] = $row;
     }
 }
-
-$deleted = isset($_GET['deleted']);
 ?>
