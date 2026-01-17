@@ -1,44 +1,42 @@
 <?php
 session_start();
-include "../db/db.php";
+include "../db/db.php"; 
 
-if(!isset($_SESSION['username'])){
+if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'employee') {
     header("Location: login.php");
-    exit();
+    exit;
 }
 
-$u_name = $_SESSION['username'];
+$user_id = $_SESSION['user_id']; 
+$submitted_msg = isset($_GET['submitted']);
+$error_msg = ""; 
 $msg = "";
 
-if(!isset($_SESSION['unique_id'])){
-    $u_query = mysqli_query($conn, "SELECT unique_id FROM users WHERE username = '$u_name'");
-    $u_data = mysqli_fetch_assoc($u_query);
-    $_SESSION['unique_id'] = $u_data['unique_id'];
-}
+$sql = mysqli_query($conn, "SELECT unique_id FROM users WHERE id = $user_id");
+$result = mysqli_fetch_assoc($sql);
+$emp_unique_id = $result['unique_id']; 
 
-$user_id = $_SESSION['unique_id'];
-
-if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['btn'])){
-    $sub_text = trim($_POST['submission']);
-    if($sub_text != ""){
-        $sql_update = "UPDATE tasks SET submission = '$sub_text', status = 'completed' 
-                       WHERE employee_id = '$user_id' AND status != 'completed'";
-        if(mysqli_query($conn, $sql_update)){
-            $msg = "Task submitted successfully!";
-        }
+if (isset($_POST['submit_task'])) {
+    $tid = $_POST['task_id'];
+    $submission = trim($_POST['submission']); 
+    
+    if (empty($submission)) {
+        $error_msg = "Submission field cannot be empty!";
     } else {
-        $msg = "Please enter your work details.";
+        $sql_update = "UPDATE tasks SET status = 'completed', submission = '$submission' WHERE id = $tid AND employee_id = '$emp_unique_id'";
+        if (mysqli_query($conn, $sql_update)) {
+            $msg = "Task Completed Successfully!";
+        } else {
+            $error_msg = "Something went wrong";
+        }
     }
 }
-
-$sql = "SELECT * FROM tasks WHERE employee_id = '$user_id'";
-$result = mysqli_query($conn, $sql);
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Tasks</title>
+    <title>My Tasks</title>
     <link rel="stylesheet" href="../css/task.css">
 </head>
 <body>
@@ -56,19 +54,21 @@ $result = mysqli_query($conn, $sql);
         <a href="dashboard.php">Dashboard</a>
         <a href="profile.php">Profile</a>
         <a href="myjob.php">My Job Application</a>
-        <a href="task.php"style="background-color: #388e3c;">Tasks</a>
+        <a href="tasks.php" style="background-color: #388e3c;">Tasks</a>
     </div>
 
-   <div class="main">
+    <div class="main">
         <h1>My Tasks</h1>
-        <?php if ($submitted_msg) echo "<p style='color:green; font-weight:bold;'>ask Completed Successfully!</p>"; ?>
+        
+        <?php if ($msg) echo "<p style='color:green; font-weight:bold;'>$msg</p>"; ?>
+        <?php if ($submitted_msg) echo "<p style='color:green; font-weight:bold;'>Task Completed Successfully!</p>"; ?>
         <?php if ($error_msg) echo "<p style='color:red; font-weight:bold;'>$error_msg</p>"; ?>
 
         <?php
         $sql_tasks = "SELECT * FROM tasks WHERE employee_id = '$emp_unique_id' AND status != 'completed'";
         $result_tasks = mysqli_query($conn, $sql_tasks);
 
-                if (mysqli_num_rows($result_tasks) > 0) {
+        if (mysqli_num_rows($result_tasks) > 0) {
             while ($row = mysqli_fetch_assoc($result_tasks)) {
         ?>
             <div class="card">
@@ -77,14 +77,20 @@ $result = mysqli_query($conn, $sql);
                 <p><strong>Status:</strong> <?php echo strtoupper($row['status']); ?></p>
                 
                 <div style="margin-top:10px;">
-                    <?php if ($row['status'] == 'pending'): ?>
-                        <a href="?update_status=1&id=<?php echo $row['id']; ?>&status=in_progress" class="btn">Start Work</a>
-                    <?php else: ?>
                         <form method="POST">
                             <input type="hidden" name="task_id" value="<?php echo $row['id']; ?>">
                             <input type="text" name="submission">
                             <button type="submit" name="submit_task" class="btn">Submit Project</button>
                         </form>
-                    <?php endif; ?>
                 </div>
             </div>
+        <?php 
+            }
+        } else {
+            echo "<p>No active tasks for ID: $emp_unique_id</p>";
+        }
+        ?>
+    </div>
+
+</body>
+</html>
