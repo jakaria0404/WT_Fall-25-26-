@@ -7,7 +7,7 @@
    <link rel="stylesheet" href="../css/dashboard_page/header.css">
     <link rel="stylesheet" href="../css/dashboard_page/sidebar.css">
     <link rel="stylesheet" href="../css/user_management_page/user_management.css">
-    <link rel="stylesheet" href="../css/dashboard_page/dashboard.css">
+   
 </head>
 <body>
     <div class="dashboard-container">
