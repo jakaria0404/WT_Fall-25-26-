@@ -1,11 +1,11 @@
 <?php
 session_start();
 include "../db/db.php";
-if(!isset($_SESSION["username"])){
-    header("Location: login.php");   
+if(!isset($_SESSION['username'])){
+    header("Location: login.php");
     exit();
 }
-$sql = "SELECT id, title ,description ,requirement, type FROM create_job";
+$sql = "SELECT job_id, title ,description ,requirements, type FROM job_posts";
 $result = mysqli_query($conn,$sql);
 ?>
 <!DOCTYPE html>
@@ -18,7 +18,7 @@ $result = mysqli_query($conn,$sql);
          <nav class = "navbar">
             <h2>NilKham</h2>
             <ul class = "container">
-                <li><a>Home</a></li>
+                <li><a href = "home.php">Home</a></li>
                 <li><a>About Us</a></li>
                 <li><a>Our services</a></li>
                 <li><a href = "browsejob.php">Browse job</a></li>
@@ -36,8 +36,8 @@ $result = mysqli_query($conn,$sql);
                 <div class = "job_part">
                     <h3><?php echo $row['title']; ?></h3>
                     <p><b>Description:</b><br><?php echo $row['description']; ?></p>
-                    <p><b>Requirement:</b><br> <?php echo $row['requirement']; ?></p>
-                    <a href="apply.php?id=<?php echo $row['id']; ?>" class="apply_btn">Apply Now</a>
+                    <p><b>Requirement:</b><br> <?php echo $row['requirements']; ?></p>
+                    <a href="apply.php?id=<?php echo $row['job_id']; ?>" class="apply_btn">Apply Now</a>
                 </div>
                 <?php 
                     }
@@ -46,9 +46,6 @@ $result = mysqli_query($conn,$sql);
                     echo "NO job found";
                 }
                 ?>
-                
-            </div>
-        </div>
         <a href = "logout.php" class="logout_btn">Logout</a>
     </body>
 </html>
