@@ -11,7 +11,7 @@ if (isset($_POST['submit'])) {
     $user = $_SESSION['username'];
     $portfolio = $_POST['portfolio_link'];
 
-    $userQuery = "SELECT user_id FROM users WHERE username = '$user'";
+    $userQuery = "SELECT unique_id FROM users WHERE username = '$user'";
     $userResult = mysqli_query($conn, $userQuery);
     $userData = mysqli_fetch_assoc($userResult);
     $userId = $userData['user_id'];
@@ -23,7 +23,7 @@ if (isset($_POST['submit'])) {
     $folder = "../uploads/" . $cvName;
 
     if (move_uploaded_file($fileTemp, $folder)) {
-        $sql = "INSERT INTO job_applications (user_id, job_id, cv_link, portfolio_link, status, phase) 
+        $sql = "INSERT INTO job_applications (id, job_id, cv_link, portfolio_link, status, phase) 
                 VALUES ('$userId', '$jobId', '$folder', '$portfolio', 'pending', 'cv')";
         
         if (mysqli_query($conn, $sql)) {
