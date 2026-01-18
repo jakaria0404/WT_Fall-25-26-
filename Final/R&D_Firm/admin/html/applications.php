@@ -38,3 +38,14 @@
                     </form>
                     <a href="applications.php" class="reset-link">Reset</a>
                 </div>
+
+                   <div class="tabs">
+                    <a href="?status=pending&type=<?= htmlspecialchars($typeFilter) ?>" 
+                       class="<?= $statusFilter=='pending'?'active':'' ?>">Pending</a>
+                    <a href="?status=interview_selected&type=<?= htmlspecialchars($typeFilter) ?>" 
+                       class="<?= $statusFilter=='interview_selected'?'active':'' ?>">Interview</a>
+                    <a href="?status=passed&type=<?= htmlspecialchars($typeFilter) ?>" 
+                       class="<?= $statusFilter=='passed'?'active':'' ?>">Passed</a>
+                    <a href="?status=rejected&type=<?= htmlspecialchars($typeFilter) ?>" 
+                       class="<?= $statusFilter=='rejected'?'active':'' ?>">Rejected</a>
+                </div>
