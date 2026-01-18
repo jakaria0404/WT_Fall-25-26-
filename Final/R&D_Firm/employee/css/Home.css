@@ -53,6 +53,33 @@ body {
 .get_started:hover {
     background-color: #388e3c;
 }
+.main {
+    background-color: #000000 ;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+    padding: 50px 15px;
+}
+.content h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+.content h1 span {
+    color: #4CAF50;
+}
+
+.content p {
+    font-size: 20px;
+    margin-bottom: 30px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .footer {
     background: #1a1a1a;
     color: #fff;
