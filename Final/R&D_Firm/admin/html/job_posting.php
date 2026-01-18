@@ -47,7 +47,7 @@
             
             <?php if ($success): ?>
                 <p style="color:green; padding: 1rem; background: #e8f5e9; border-left: 4px solid #4caf50; border-radius: 4px; margin-bottom: 1rem;">
-                    ✔️ <?php echo htmlspecialchars($success); ?>
+                    ✔️<?php echo htmlspecialchars($success); ?>
                 </p>
             <?php endif; ?>
             <?php if ($error): ?>

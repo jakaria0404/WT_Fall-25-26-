@@ -16,11 +16,11 @@ $description = "";
 $requirements = "";
 $type = "";
 
-if ($_SERVER["REQUEST_METHOD"] == "POST" && !isset($_POST['edit_job'])) {
-    $title = test_input($_POST["title"], $conn);
-    $description = test_input($_POST["description"], $conn);
-    $requirements = test_input($_POST["requirements"] ?? "", $conn);
-    $type = test_input($_POST["type"], $conn);
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $title = mysqli_real_escape_string($conn, trim($_POST["title"]));
+    $description = mysqli_real_escape_string($conn, trim($_POST["description"]));
+    $requirements = mysqli_real_escape_string($conn, trim($_POST["requirements"] ?? ""));
+    $type = mysqli_real_escape_string($conn, trim($_POST["type"]));
 
     if (empty($title) || empty($description) || empty($type)) {
         $error = "All fields are required";
@@ -37,15 +37,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !isset($_POST['edit_job'])) {
     }
 }
 
-if (isset($_GET['delete']) && isset($_GET['id'])) {
-    $jobId = $_GET['id'];
-    $sql = "DELETE FROM job_posts WHERE job_id = $jobId";
-    
-    if (mysqli_query($conn, $sql)) {
-        header("Location: job_posting.php?deleted=1");
-        exit;
-    } else {
-        $error = "Error: " . mysqli_error($conn);
+if (isset($_GET['delete'], $_GET['id'])) {
+    $id = mysqli_real_escape_string($conn, $_GET['id']);
+    if (mysqli_query($conn, "DELETE FROM job_posts WHERE job_id = '$id'")) {
+         header("Location:../html/job_posting.php?deleted=1");
+        exit();
     }
 }
 
