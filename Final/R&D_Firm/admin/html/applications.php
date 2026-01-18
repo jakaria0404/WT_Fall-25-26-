@@ -67,10 +67,53 @@
                     <tbody>
 
                     <?php if($totalApplications > 0): ?>
+                        <?php while($row = mysqli_fetch_assoc($result)): ?>
+                        <tr>
+                            <td><?= htmlspecialchars($row['unique_id']) ?></td>
+                            <td>
+                                <?= htmlspecialchars($row['username']) ?><br>
+                                <small><?= htmlspecialchars($row['email']) ?></small>
+                            </td>
+                            <td><?= htmlspecialchars($row['job_title']) ?></td>
+                            <td>
+                                <?php if(!empty($row['cv_link'])): ?>
+                                    <a href="download_cv.php?file=<?= urlencode($row['cv_link']) ?>">View CV</a>
+                                <?php else: ?>
+                                    <span class="no-cv">No CV</span>
+                                <?php endif; ?>
+                            </td>
+                            <td><?= !empty($row['portfolio_link']) ? '<a href="' . htmlspecialchars($row['portfolio_link']) . '" target="_blank">View Portfolio</a>' : '-' ?></td>
+                            <td><span class="badge badge-<?= htmlspecialchars($row['status']) ?>"><?= htmlspecialchars($row['status']) ?></span></td>
+                            <td>
+                                <?php if($statusFilter == 'pending'): ?>
+                                    <a href="update_status.php?id=<?= $row['id'] ?>&action=shortlist&status=<?= htmlspecialchars($statusFilter) ?>" 
+                                       class="btn-blue" onclick="return confirm('Are you sure you?')">Shortlist</a>
+                                    <a href="update_status.php?id=<?= $row['id'] ?>&action=reject&status=<?= htmlspecialchars($statusFilter) ?>" 
+                                       class="btn-red"
+                                       onclick="return confirm('Are you sure?')">Reject</a>
+                                <?php elseif($statusFilter == 'interview_selected'): ?>
+
+                                    <a href="interview_info.php?id=<?= $row['id'] ?>&return=applications.php?status=<?= htmlspecialchars($statusFilter) ?>" 
+                                       class="btn-info">Send Info</a>
+                                    <a href="update_status.php?id=<?= $row['id'] ?>&action=pass&status=<?= htmlspecialchars($statusFilter) ?>" 
+                                       class="btn-green" 
+                                       onclick="return confirm('Are you sure you want to mark this application as Passed?')">Pass</a>
+                                    <a href="update_status.php?id=<?= $row['id'] ?>&action=reject&status=<?= htmlspecialchars($statusFilter) ?>" 
+                                       class="btn-red"
+                                       onclick="return confirm('Are you sure?')">Reject</a>
+                                <?php else: ?>
+
+                                    <span class="no-action">-</span>
+                                <?php endif; ?>
+                            </td>
+                        </tr>
+                        <?php endwhile; ?>
                     <?php else: ?>
+
                         <tr>
                             <td colspan="7" class="no-data">
                                 <p>No applications found.</p>
+                                <small>Try changing filters or search terms.</small>
                             </td>
                         </tr>
                     <?php endif; ?>
