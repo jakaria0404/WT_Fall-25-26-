@@ -31,3 +31,24 @@
     cursor: pointer;
     justify-content: space-between;
 }
+.emp-item:hover {
+    background-color: #9fe9c4;
+}
+
+.id-badge {
+    background: #007bff;
+    color: #ffffff;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.rank-badge {
+    font-size: 11px;
+    font-weight: bold;
+    padding: 2px 8px;
+    border-radius: 4px;
+    pointer-events: none;
+}
+

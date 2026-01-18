@@ -1,3 +1,4 @@
+<?php include "../php/process_task.php"; ?>
 <?php
 include "../db/db.php"; 
 $query = "SELECT username, unique_id, email, rank FROM users WHERE role = 'employee'";
@@ -29,8 +30,20 @@ if ($result && mysqli_num_rows($result) > 0) {
             <?php include "header.php"; ?>
             <div class="page-content">
             <h2>Assign Task</h2>
-                                
-            <form method="post" action="" class="task-form">
+
+             <?php if (isset($_GET['status'])): ?>
+            <?php if ($_GET['status'] == 'success'): ?>
+            <div style="padding: 10px; background: #d4edda; color: #155724; border: 1px solid #c3e6cb; border-radius: 5px; margin-bottom: 15px;">
+            Task assigned successfully!
+            </div>
+             <?php elseif ($_GET['status'] == 'error'): ?>
+            <div style="padding: 10px; background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; border-radius: 5px; margin-bottom: 15px;">
+            <strong>Error:</strong> <?= htmlspecialchars($_GET['msg']); ?>
+                </div>
+                            <?php endif; ?>
+                        <?php endif; ?>
+
+            <form method="post" action="../php/process_task.php" class="task-form">
                 <div class="form-group">
                     <label>Task Title:</label>
                     <input type="text" name="title" value="" required>
