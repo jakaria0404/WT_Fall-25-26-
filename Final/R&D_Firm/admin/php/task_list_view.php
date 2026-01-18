@@ -55,7 +55,9 @@
                             <?= $task['deadline'] ? date('d M, Y', strtotime($task['deadline'])) : '<span class="no-deadline">--</span>'; ?>
                         </td>
                         <td class="action-cell">
-                            <a href="edit_task.php?id=<?= $task['id']; ?>" class="action-btn btn-edit">Edit</a>
+                            <?php if ($task['status'] == 'completed'): ?>
+                                <a href="../php/view_submission.php?id=<?= $task['id']; ?>" class="action-btn btn-view">View Submission</a>
+                             <?php endif; ?>
                            <a href="../php/delete_task.php?id=<?= $task['id']; ?>" onclick="return confirm('Delete this task?')" class="action-btn btn-delete">Delete</a>
                         </td>
                     </tr>
