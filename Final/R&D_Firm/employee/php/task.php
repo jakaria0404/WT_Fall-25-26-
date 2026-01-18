@@ -2,19 +2,20 @@
 session_start();
 include "../db/db.php"; 
 
-if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'employee') {
+if (!isset($_SESSION['username'])) {
     header("Location: login.php");
     exit;
 }
 
-$user_id = $_SESSION['user_id']; 
+$currentUser = $_SESSION['username'];
 $submitted_msg = isset($_GET['submitted']);
 $error_msg = ""; 
 $msg = "";
 
-$sql = mysqli_query($conn, "SELECT unique_id FROM users WHERE id = $user_id");
-$result = mysqli_fetch_assoc($sql);
-$emp_unique_id = $result['unique_id']; 
+$userQuery = "SELECT unique_id FROM users WHERE username = '$currentUser'";
+$userResult = mysqli_query($conn, $userQuery);
+$userData = mysqli_fetch_assoc($userResult);
+$emp_unique_id = $userData['unique_id']; 
 
 if (isset($_POST['submit_task'])) {
     $tid = $_POST['task_id'];
@@ -54,7 +55,7 @@ if (isset($_POST['submit_task'])) {
         <a href="dashboard.php">Dashboard</a>
         <a href="profile.php">Profile</a>
         <a href="myjob.php">My Job Application</a>
-        <a href="tasks.php" style="background-color: #388e3c;">Tasks</a>
+        <a href="task.php" style="background-color: #388e3c;">Tasks</a>
     </div>
 
     <div class="main">
@@ -87,7 +88,7 @@ if (isset($_POST['submit_task'])) {
         <?php 
             }
         } else {
-            echo "<p>No active tasks for ID: $emp_unique_id</p>";
+            echo "<p>No active task</p>";
         }
         ?>
     </div>
