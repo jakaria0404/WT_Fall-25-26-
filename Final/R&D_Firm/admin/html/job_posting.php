@@ -79,7 +79,7 @@
                                 <td><?php echo htmlspecialchars($row['title']); ?></td>
                                 <td><?php echo ucfirst($row['type']); ?></td>
                                 <td><?php echo date('Y-m-d', strtotime($row['created_at'])); ?></td>
-                                <td>R&D Firm Author</td>
+                                <td>Nilkham Author</td>
                                 <td>
                                     <a href="?delete=1&id=<?php echo $row['job_id']; ?>" onclick="return confirm('Are you sure?')" class="delete-link">Delete</a>
                                 </td>
