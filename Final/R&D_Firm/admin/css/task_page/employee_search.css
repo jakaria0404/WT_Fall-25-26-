@@ -22,5 +22,12 @@
     max-height: 150px;
     overflow-y: auto;
     background: #ffffff;
+    display: none;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
+.emp-item {
+    padding: 12px;
+    cursor: pointer;
+    justify-content: space-between;
+}
