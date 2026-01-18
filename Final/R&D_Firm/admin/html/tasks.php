@@ -1,3 +1,16 @@
+<?php
+include "../db/db.php"; 
+$query = "SELECT username, unique_id, email, rank FROM users WHERE role = 'employee'";
+$result = mysqli_query($conn, $query);
+
+$employees = [];
+if ($result && mysqli_num_rows($result) > 0) {
+    while ($row = mysqli_fetch_assoc($result)) {
+        $employees[] = $row;
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,6 +20,7 @@
     <link rel="stylesheet" href="../css/dashboard_page/header.css">
     <link rel="stylesheet" href="../css/dashboard_page/sidebar.css">
     <link rel="stylesheet" href="../css/task_page/tasks.css">
+    <link rel="stylesheet" href="../css/task_page/employee_search.css">
 </head>
 <body>
     <div class="dashboard-container">
@@ -26,11 +40,10 @@
                     <label>Description:</label>
                     <textarea name="description" rows="5" required></textarea>
                 </div>
-                
                 <div class="form-group">
                     <label>Assign To:</label>
-        
-                        <input type="text" id="employeeSearch" placeholder="Search by Employee ID (NK-XXX-YY)...">
+                    <?php include "../php/employee_search.php"; ?>
+                </div>
                 <div class="form-group">
                     <label>Deadline (Optional):</label>
                     <input type="date" name="deadline">
