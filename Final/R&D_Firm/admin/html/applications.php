@@ -18,3 +18,23 @@
                 
             <div class="container">
                 <h2>Job Applications</h2>
+            <div class="filter-box">
+                <div class="btn-group">
+                        <a href="?status=<?= htmlspecialchars($statusFilter) ?>&type=all" 
+                           class="btn <?= $typeFilter=='all'?'active':'' ?>">All</a>
+                        <a href="?status=<?= htmlspecialchars($statusFilter) ?>&type=developer" 
+                           class="btn <?= $typeFilter=='developer'?'active':'' ?>">Developer</a>
+                        <a href="?status=<?= htmlspecialchars($statusFilter) ?>&type=researcher" 
+                           class="btn <?= $typeFilter=='researcher'?'active':'' ?>">Researcher</a>
+                    </div>
+
+                <form method="get" class="search-form">
+                     <input type="hidden" name="status" value="<?= htmlspecialchars($statusFilter) ?>">
+                        <input type="hidden" name="type" value="<?= htmlspecialchars($typeFilter) ?>">
+                        <input type="text" name="search" placeholder="Search by name/ID..."
+                                 value="<?= htmlspecialchars($search) ?>">
+
+                        <button type="submit">Search</button>
+                    </form>
+                    <a href="applications.php" class="reset-link">Reset</a>
+                </div>
