@@ -49,3 +49,16 @@
                     <a href="?status=rejected&type=<?= htmlspecialchars($typeFilter) ?>" 
                        class="<?= $statusFilter=='rejected'?'active':'' ?>">Rejected</a>
                 </div>
+
+                 <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Applicant</th>
+                            <th>Job Title</th>
+                            <th>CV</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
