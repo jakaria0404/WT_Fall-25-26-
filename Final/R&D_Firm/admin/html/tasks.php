@@ -42,7 +42,11 @@ if ($result && mysqli_num_rows($result) > 0) {
                 </div>
                             <?php endif; ?>
                         <?php endif; ?>
-
+              <?php if (isset($_GET['msg']) && $_GET['msg'] == 'deleted'): ?>
+            <div style="padding: 10px; background: #d4edda; color: #155724; border: 1px solid #c3e6cb; border-radius: 5px; margin-bottom: 15px;">
+            Task deleted successfully!
+            </div>
+            <?php endif; ?>
             <form method="post" action="../php/process_task.php" class="task-form">
                 <div class="form-group">
                     <label>Task Title:</label>

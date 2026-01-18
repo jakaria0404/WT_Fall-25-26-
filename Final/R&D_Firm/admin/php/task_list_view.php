@@ -56,7 +56,7 @@
                         </td>
                         <td class="action-cell">
                             <a href="edit_task.php?id=<?= $task['id']; ?>" class="action-btn btn-edit">Edit</a>
-                            <a href="../php/delete_task.php?id=<?= $task['id']; ?>" onclick="return confirm('Delete this task?')" class="action-btn btn-delete">Delete</a>
+                           <a href="../php/delete_task.php?id=<?= $task['id']; ?>" onclick="return confirm('Delete this task?')" class="action-btn btn-delete">Delete</a>
                         </td>
                     </tr>
                 <?php } 
