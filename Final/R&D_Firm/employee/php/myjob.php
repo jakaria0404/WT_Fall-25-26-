@@ -9,13 +9,16 @@ if(!isset($_SESSION['username'])){
 
 $currentUser = $_SESSION['username'];
 
-$userQuery = "SELECT user_id FROM users WHERE username = '$currentUser'";
+$userQuery = "SELECT unique_id FROM users WHERE username = '$currentUser'";
 $userResult = mysqli_query($conn, $userQuery);
 $userData = mysqli_fetch_assoc($userResult);
-$userId = $userData['user_id'];
+$userId = $userData['unique_id'];
 
-$sql = "SELECT (SELECT title FROM job_posts WHERE id = job_applications.job_id) AS title,(SELECT type FROM job_posts WHERE id = job_applications.job_id) AS type, status, phase, created_at FROM job_applications 
-WHERE user_id = '$userId'";
+$sql = "SELECT job_posts.title, job_posts.type, job_applications.status, job_applications.phase, job_applications.created_at 
+        FROM job_applications 
+        JOIN job_posts ON job_applications.job_id = job_posts.job_id 
+        WHERE job_applications.user_id = '$userId' 
+        ORDER BY job_applications.created_at DESC";
 
 $result = mysqli_query($conn, $sql);
 ?>
@@ -40,37 +43,35 @@ $result = mysqli_query($conn, $sql);
         <a href="dashboard.php">Dashboard</a>
         <a href="profile.php">Profile</a>
         <a href="myjob.php" style="background-color: #45a049;">My Job Application</a>
+        <a href="task.php">Tasks</a>
     </div>
 
     <div class="content">
         <div class="table">
             <h1>My Job Applications</h1>
             <table class="job-table">
-                <thead>
+                <tr>
+                    <th><b>Job Title</b></th>
+                    <th><b>Type</b></th>
+                    <th><b>Status</b></th>
+                    <th><b>Phase</b></th>
+                </tr>
+                <?php 
+                if ($result && mysqli_num_rows($result) > 0) {
+                    while($row = mysqli_fetch_assoc($result)) { 
+                ?>
                     <tr>
-                        <th>Job Title</th>
-                        <th>Type</th>
-                        <th>Status</th>
-                        <th>Phase</th>
+                        <td><?php echo $row['title']; ?></td>
+                        <td><?php echo $row['type']; ?></td>
+                        <td><?php echo $row['status']; ?></td>
+                        <td><?php echo $row['phase']; ?></td>
                     </tr>
-                </thead>
-                <tbody>
-                    <?php 
-                    if ($result && mysqli_num_rows($result) > 0) {
-                        while($row = mysqli_fetch_assoc($result)) { 
-                    ?>
-                        <tr>
-                            <td><?php echo $row['title']; ?></td>
-                            <td><?php echo $row['type']; ?></td>
-                            <td><?php echo $row['status']; ?></td>
-                            <td><?php echo $row['phase']; ?></td>
-                    <?php 
-                        } 
-                    } else {
-                        echo "<tr><td colspan='4' style='text-align:center;'>No applications found.</td></tr>";
+                <?php 
                     } 
-                    ?>
-                </tbody>
+                } else {
+                    echo "<tr><td colspan='4' style='text-align:center;'>No applications found.</td></tr>";
+                } 
+                ?>
             </table>
         </div>
     </div>
