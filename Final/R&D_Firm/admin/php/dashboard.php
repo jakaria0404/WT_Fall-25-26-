@@ -1,5 +1,9 @@
 <?php 
-
+session_start();
+if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
+    header("Location: /Home/index.php");
+    exit;
+}
 include "../db/db.php";
 
 $appSql = "SELECT COUNT(*) as total FROM job_applications";

@@ -9,7 +9,7 @@
             <ul class="dropdown-menu">
                 <li><a href="profile.php">Profile</a></li>
                 <li><a href="dashboard.php">Dashboard</a></li>
-                <li><a href="../../auth/logout.php">Logout</a></li>
+                <li><a href="/auth/logout.php">Logout</a></li>
             </ul>
         </div>
     </div>

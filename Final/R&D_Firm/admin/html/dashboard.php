@@ -1,4 +1,4 @@
-<?php include "../php/dashboard.php"; ?>
+<?php include "../php/dashboard.php";?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

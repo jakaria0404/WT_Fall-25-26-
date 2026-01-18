@@ -64,6 +64,8 @@ if ($result && mysqli_num_rows($result) > 0) {
                 
                 <button type="submit" class="submit-btn">Assign Task</button>
             </form>
+
+            <?php include "../php/task_list_view.php"; ?>
             
 </body>
 </html>
