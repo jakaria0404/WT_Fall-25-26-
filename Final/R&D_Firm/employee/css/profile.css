@@ -10,6 +10,11 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 20px 40px;
+    position:fixed;
+    top:0px;
+    width:100%;
+    z-index: 1000;
+    box-sizing: border-box;
 
 }
 
@@ -23,8 +28,8 @@ body {
 .container {
     list-style: none;
     gap: 35px;
-    margin: 0;
-    padding: 0;
+    margin: 0px;
+    padding: 0px;
     display:flex;
 }
 
@@ -40,15 +45,14 @@ body {
     color: #4CAF50;
 }
 .sidebar {
-    height: 100%;
     width: 200px;
-    position: fixed;
-    z-index: 1;
- 
     top: 75px;
+    position:fixed;
     left: 0;
     background-color: #000000;
     padding-top: 20px;
+    height: 100vh;
+    z-index: 999;
 }
 
 .sidebar a {
@@ -58,7 +62,7 @@ body {
     color: white;
     display: block;
     font-family: Arial, sans-serif;
-}
+}   
 
 .sidebar a:hover {
     background-color: #45a049;
@@ -67,6 +71,8 @@ body {
 .profile{
     width:300px;
     margin:50px auto;
+    margin-left: 300px;
+    margin-top: 100px;
     background-color:#ffffff;
     padding:30px;
     border-radius:8px;
@@ -75,6 +81,8 @@ body {
 .profile h2{
     text-align:center;
     color:#333;
+    margin-top: 100px;
+    margin-left: 250px;
 }
 .group{
     margin-bottom: 15px;
