@@ -54,3 +54,16 @@
             </div>
 
             <p>Total: <strong><?php echo $totalEmployees; ?></strong></p>
+
+              <div class="tableEmployee">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Username</th>
+                            <th>Category</th>
+                            <th>Rank</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>

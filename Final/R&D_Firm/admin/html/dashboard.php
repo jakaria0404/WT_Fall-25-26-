@@ -54,7 +54,7 @@
                         </div>
                     </div>
                     <div class="kpi-card">
-                            <div class="kpi-icon">📋</div>
+                            <div class="kpi-icon">📓</div>
                         <div class="kpi-info">
                             <h3>Total Tasks</h3>
                             <p class="kpi-value"><?php echo $totalTasks; ?></p>
@@ -69,7 +69,7 @@
                         </div>
                     </div>
                      <div class="kpi-card">
-                        <div class="kpi-icon">💰</div>
+                        <div class="kpi-icon">💲</div>
                         <div class="kpi-info">
                             <h3>Total Payments</h3>
                             <p class="kpi-value">$<?php echo $totalPayments; ?></p>

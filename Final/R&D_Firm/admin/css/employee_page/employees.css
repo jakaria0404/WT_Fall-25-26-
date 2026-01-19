@@ -1,0 +1,12 @@
+.tableEmployee {
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
