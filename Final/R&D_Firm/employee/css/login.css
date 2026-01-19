@@ -62,7 +62,7 @@ input[type="text"], input[type="password"] {
   margin-top: 2px;
 }
 
-.footer-links {
+.new {
   text-align: center;
   margin-top: 20px;
   border-top: 1px solid #eee;
@@ -77,8 +77,4 @@ input[type="text"], input[type="password"] {
   font-size: 14px;
   display: block; 
   margin-top: 5px;
-}
-
-.create-btn:hover {
-  text-decoration: underline;
 }
