@@ -21,7 +21,7 @@ if ($result && mysqli_num_rows($result) > 0) {
     <link rel="stylesheet" href="../css/dashboard_page/header.css">
     <link rel="stylesheet" href="../css/dashboard_page/sidebar.css">
     <link rel="stylesheet" href="../css/task_page/tasks.css">
-    <link rel="stylesheet" href="../css/task_page/employee_search.css">
+   
 </head>
 <body>
     <div class="dashboard-container">
