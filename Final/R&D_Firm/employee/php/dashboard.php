@@ -38,8 +38,7 @@ $totalPayments = $paymentData['total'] ?? "0.00";
             <h2>NilKham</h2>
             <ul class = "container">
                 <li><a href = "home.php">Home</a></li>
-                <li><a href = "browsejob.php">Browse job</a></li>
-                <li><a href = "profile.php">Profile</a></li>
+                <li><a href="logout.php">Log Out</a></li>
             </ul>
         </nav>
             <div class="sidebar">
@@ -69,9 +68,7 @@ $totalPayments = $paymentData['total'] ?? "0.00";
                     <h3>Total Payments</h3>
                     <p class="value">$<?php echo $totalPayments; ?></p>
                 </div>
-                
             </div>
         </div>
-
     </body>
 </html>
