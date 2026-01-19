@@ -1,5 +1,6 @@
 <?php include "../php/employees.php"; ?>
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,5 +34,15 @@
                             <option value="all">All</option>
                             <option value="developer" <?php if($category == 'developer') echo 'selected'; ?>>Developer</option>
                             <option value="researcher" <?php if($category == 'researcher') echo 'selected'; ?>>Researcher</option>
+                        </select>
+                    </div>
+                        <div class="input-group">
+                        <label>Rank:</label>
+                        <select name="rank">
+                            <option value="all">All</option>
+                            <option value="junior" <?php if($rank == 'junior') echo 'selected'; ?>>Junior</option>
+                            <option value="senior" <?php if($rank == 'senior') echo 'selected'; ?>>Senior</option>
+                            <option value="lead" <?php if($rank == 'lead') echo 'selected'; ?>>Lead</option>
+                            <option value="manager" <?php if($rank == 'manager') echo 'selected'; ?>>Manager</option>
                         </select>
                     </div>
