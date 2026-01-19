@@ -38,3 +38,61 @@ body {
 .container li a:hover {
     color: #4CAF50;
 }
+.footer {
+    background: #1a1a1a;
+    color: #fff;
+    padding: 48px 0 16px;
+    margin-top: 50px;
+}
+
+.footer-section h3 {
+    color: #4CAF50;
+    margin-bottom: 16px;
+    font-size: 24px;
+}
+
+.footer-section p {
+    line-height: 26px;
+    color: #ccc;
+    font-size: 16px;
+}
+
+.footer-section a {
+    color: #fff;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 8px;
+    font-size: 16px;
+}
+
+.social-links {
+    display: flex;
+    gap: 16px;
+    margin-top: 16px;
+}
+
+.social-icon {
+    padding: 8px 16px;
+    background: #2a2a2a;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    color: #fff;
+    text-decoration: none;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 32px;
+    margin-top: 32px;
+    border-top: 1px solid #333;
+    color: #888;
+    font-size: 14px;
+}
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 32px;
+    display: grid;
+    gap: 32px;
+}
