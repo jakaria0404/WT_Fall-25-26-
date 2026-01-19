@@ -21,7 +21,10 @@
 
         <div class="page-content">
             <h2>Employee Management</h2>
-
+                    
+            <?php if ($success): ?>
+                        <div class="msg success"><?php echo $success; ?></div>
+            <?php endif; ?>
          <div class="filter-box">
                 <form method="GET">
                     <div class="search-group">
@@ -88,3 +91,11 @@
                             </tr>
                         <?php endwhile; ?>
                     </tbody>
+                     </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+</div>
+</body>
+</html>
