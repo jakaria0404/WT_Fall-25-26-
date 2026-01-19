@@ -3,7 +3,12 @@ session_start();
 include "../db/db.php";
 
 if(isset($_SESSION["username"])){
-    header("Location: home.php");
+    if($_SESSION['role']=='user'){
+        header("Location: userprofile.php");
+    }
+    else{
+        header("Location: profile.php");
+    }
     exit();
 }
 $error = "";
@@ -30,8 +35,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $row = mysqli_fetch_assoc($result);
             if(password_verify($password, $row['password'])){
                 $_SESSION['username'] = $row['username'];
-                header("Location: dashboard.php");
-                exit();
+                $_SESSION['role'] = $row['role'];
+
+                setcookie("user_login", $row['username'], time() + (86400 * 30), "/");
+
+                if($_SESSION['role']=='user'){
+                    header("Location: userprofile.php");
+                    exit();
+                }
+                else if($_SESSION['role']=='employee'){
+                    header("Location: profile.php");
+                    exit();
+                }
             }
             else{
                 $error = "Invalid password";
@@ -48,7 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <!DOCTYPE html>
 <html>
 <head>
-    <title></title>Login Page</title>
+    <title>Login Page</title>
     <link rel="stylesheet" href="../css/Login.css">
 </head>
 <body>
