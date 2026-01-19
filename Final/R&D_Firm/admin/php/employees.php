@@ -32,6 +32,11 @@ $rank = $_GET['rank'] ?? 'all';
 
 $sql = "SELECT * FROM users WHERE role = 'employee'";
 
+if ($search != '') { 
+    $sql .= " AND (username LIKE '%$search%' OR email LIKE '%$search%' OR unique_id LIKE '%$search%' OR first_name LIKE '%$search%' OR rank LIKE '%$search%')"; 
+}
+
+
 $sql .= " ORDER BY created_at DESC";
 $result = mysqli_query($conn, $sql);
 $totalEmployees = mysqli_num_rows($result);
