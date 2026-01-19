@@ -46,3 +46,9 @@
                             <option value="manager" <?php if($rank == 'manager') echo 'selected'; ?>>Manager</option>
                         </select>
                     </div>
+                           <div class="button-group">
+                        <button type="submit" class="btn-search">Filter</button>
+                        <a href="employees.php" class="btn-reset">Reset ALL</a>
+                    </div>
+                </form>
+            </div>
