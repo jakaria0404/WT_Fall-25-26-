@@ -86,8 +86,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <input type="password" name="password">
         <span class="error"><?php echo $passerror; ?></span>
 
+        <div style="text-align: right; margin-bottom: 15px;">
+            <a href="forgot_password.php" style="text-decoration: none; font-size: 14px; color: #007bff;">Forgot Password?</a>
+        </div>
+
         <input type="submit" name="submit" value="Login" class="loginbtn">
-        <div class="footer-links"> 
+        <div class="new"> 
         <p>New here?</p>
         <a href="register.php" class="create-btn">Create New Account</a>
         </div>
