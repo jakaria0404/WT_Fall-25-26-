@@ -16,4 +16,17 @@
     <div class="my-form-box">
         <h3>Make a Payment</h3>
 
-        
+  <form method="post">
+            <label>Employee ID:</label>
+            <?php include "../php/employee_search.php"; ?>
+
+            <label>Amount:</label>
+            <input type="number" name="cash" class="input-style" required>
+
+            <label>Notes:</label>
+            <textarea name="note" class="input-style"></textarea>
+
+            <button type="submit" name="send_payment" class="btn-send">Submit Now</button>
+        </form>
+    </div>
+       
