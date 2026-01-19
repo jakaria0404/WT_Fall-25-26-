@@ -24,6 +24,7 @@ if (isset($statusMap[$action])) {
     $sql = "UPDATE job_applications SET status = '$newStatus' WHERE id = '$id'";
     
     if (mysqli_query($conn, $sql)) {
+        if($newStatus=='passed'){ mysqli_query($conn,"UPDATE users u JOIN job_applications ja ON u.unique_id=ja.user_id SET u.role='employee' WHERE ja.id='$id'"); }
         header("Location: applications.php?status=$statusFilter&success=1");
     } else {
         header("Location: applications.php?status=$statusFilter&error=failed");

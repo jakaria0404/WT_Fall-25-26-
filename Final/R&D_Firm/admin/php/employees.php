@@ -16,6 +16,15 @@ if (isset($_GET['promote']) && isset($_GET['id'])) {
         $success = "Employee promoted successfully!";
     }
 }
+if (isset($_GET['remove']) && isset($_GET['id'])) {
+    $id = mysqli_real_escape_string($conn, $_GET['id']);
+    
+    $sql = "UPDATE users SET role = 'user' WHERE id = '$id'";
+    
+    if (mysqli_query($conn, $sql)) {
+        $success = "Employee removed.";
+    }
+}
 
 $search = $_GET['search'] ?? '';
 $category = $_GET['category'] ?? 'all';
