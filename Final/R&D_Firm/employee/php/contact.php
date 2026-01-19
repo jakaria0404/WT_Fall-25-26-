@@ -1,9 +1,42 @@
+<?php
+function test_input($data) {
+    $data = trim($data);
+    return $data;
+}
+
+$name_err = $email_err = $msg_err = "";
+$success_msg = "";
+$name = $email = $message = "";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $name    = test_input($_POST['name']);
+    $email   = test_input($_POST['email']);
+    $message = test_input($_POST['message']);
+
+    if (empty($name)) {
+        $name_err = "Name is required";
+    }
+
+    if (empty($email)) {
+        $email_err = "Email is required";
+    }
+
+    if (empty($message)) {
+        $msg_err = "Message is required";
+    }
+
+    if (empty($name_err) && empty($email_err) && empty($msg_err)) {
+        $success_msg = "Your message has been sent!";
+        $name = $email = $message = "";
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Contact Us</title>
-    <link rel="stylesheet" href="css/contact.css">
+    <link rel="stylesheet" href="../css/contact.css">
 </head>
 <body>
         <nav class = "navbar">
@@ -30,9 +63,10 @@
 
             <div class="label">
                 <label>Message</label>
-                <textarea name="message" roes="5"></textarea>
+                <input type="text" name="text">
             </div>
             <button type="submit" class="submit-btn">Send Message</button>
+            </div>
         </form>
         <footer class="footer">
             <div class="footer-container">
@@ -51,6 +85,5 @@
                 </div>
             </div>
         </footer>
-</div>
 </body>
 </html>
