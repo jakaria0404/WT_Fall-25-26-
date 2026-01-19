@@ -14,3 +14,14 @@
         <?php include "header.php"; ?>
         <div class="page-content">
             <h3>Contact Messages</h3>
+
+             <table class="messages-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Message</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>

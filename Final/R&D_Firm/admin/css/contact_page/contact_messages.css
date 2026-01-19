@@ -1,0 +1,9 @@
+.page-content {
+    padding: 20px;
+}
+
+.messages-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+}
