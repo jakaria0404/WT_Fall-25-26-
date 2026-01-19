@@ -6,6 +6,12 @@ if(!isset($_SESSION['username'])){
     header("Location: login.php");
     exit();
 }
+if($_SESSION['role'] !== 'employee'){
+    if($_SESSION['role'] == 'user'){
+        header("Location: userprofile.php");
+    }
+    exit();
+}
 
 $currentUser = $_SESSION['username'];
 $msg = "";
@@ -45,6 +51,7 @@ $user = mysqli_fetch_assoc($result);
             <li><a href="dashboard.php">Home</a></li>
             <li><a href="browsejob.php">Browse job</a></li>
             <li><a href="profile.php">Profile</a></li>
+
         </ul>
     </nav>
 
@@ -52,6 +59,7 @@ $user = mysqli_fetch_assoc($result);
         <a href="dashboard.php">Dashboard</a>
         <a href="profile.php" style="background-color: #388e3c;">Profile</a>
         <a href="myjob.php">My Job Application</a>
+        <a href="task.php">Tasks</a>
     </div>
     <h2 class ="profile">Welcome <?php echo $_SESSION['username'];?></h2>
 
@@ -59,7 +67,7 @@ $user = mysqli_fetch_assoc($result);
         <h2>Update Profile</h2>
         
         <?php if($msg != ""): ?>
-            <p style="color: green; font-weight: bold;"><?php echo $msg; ?></p>
+            <p style="color: green; text-align:center; font-weight: bold;"><?php echo $msg; ?></p>
         <?php endif; ?>
 
         <form method="POST">
