@@ -1,3 +1,10 @@
+.container {
+    width: 100%;
+    margin: auto;
+    font-family:sans-serif;
+    color: #201c1c;
+}
+
 .data-table {
     width: 100%;
     border-collapse: collapse;
@@ -35,12 +42,9 @@
     padding: 5px;
     border-bottom: 2px solid transparent;
 }
-
-.tabs a.active {
-    border-bottom: 2px solid #4CAF50;
+.tabs a:hover {
+    border-bottom: 2px solid #17d606;
 }
-
-
 .btn, button {
     padding: 6px 12px;
     text-decoration: none;
@@ -57,11 +61,11 @@
 }
 
 
-.badge {
-    font-weight: bold;
-    font-size: 12px;
-}
+
+.badge { padding: 0.4rem 0.8rem; border-radius: 20px; font-size: 0.85rem; font-weight: 500; }
 
 .btn-blue { color: blue; }
 .btn-red { color: red; }
 .btn-green { color: green; }
+
+.btn-group { display: flex; gap: 0.5rem; margin-bottom: 1rem; }
