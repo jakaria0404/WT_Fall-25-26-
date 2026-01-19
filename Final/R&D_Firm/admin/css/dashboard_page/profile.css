@@ -1,54 +1,27 @@
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: Arial, sans-serif;
-    background: #f5f5f5;
-}
-
-.dashboard-container {
-    display: flex;
-    min-height: 100vh;
-}
-
-
-
-.main-content {
-    margin-left: 250px;
-    margin-top: 70px;
-    padding: 2rem;
-    min-height: calc(100vh - 70px);
-    flex: 1;
-    background: #f5f5f5;
-}
-.profile-form {
+.profile-container {
     max-width: 600px;
-}
-.profile-form label {
-    display: block;
-    margin-bottom: 0.5rem;
-    font-weight: bold;
+    margin: 20px auto;
+    background: #ffffff;
+    padding: 30px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
 }
 
-.profile-form input {
-    width: 100%;
-    padding: 0.5rem;
-    margin-bottom: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+.profile-info h2 {
+    margin-bottom: 20px;
+    color: #333;
+    border-bottom: 2px solid #04AA6D;
+    padding-bottom: 10px;
 }
-.profile-form button {
-    padding: 0.7rem 1.5rem;
-    background-color: #4cad63;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+
+
+.form-group {
+    margin-bottom: 15px;
 }
-.profile-form button:hover {
-    background-color: #5cfc00;
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #555;
 }
