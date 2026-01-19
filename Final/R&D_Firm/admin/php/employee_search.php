@@ -1,151 +1,78 @@
-<style>
-    .search-area {
-    position: relative;
-    width: 100%;
-}
-
-.input-box {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    outline: none;
-}
-.input-box:focus {
-    border-color: #88eb61;
-}
-.list-box {
-    position: absolute;
-    width: 100%;
-    max-height: 150px;
-    overflow-y: auto;
-    background: #fff;
-    display: none;
-    border: 1px solid #ddd;
-    z-index: 100;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-}
-
-.item {
-    padding: 10px;
-    cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid #eee;
-}
-
-.item:hover {
-    background: #88eb61;
-}
-
-.id-tag {
-    background: #0c1235;
-    color: #fff;
-    padding: 2px 6px;
-    border-radius: 3px;
-    font-size: 11px;
-    border-radius: 3px;
-    border: none;
-}
-
-.rank-tag {
-    padding: 2px 6px;
-    border-radius: 3px;
-    font-size: 11px;
-    font-weight: bold;
-
-}
-
-.result-box {
-    display: none;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    border: 1px solid #ddd;
-    background: #fafafa;
-    border-radius: 4px;
-}
-
-.close-btn {
-    cursor: pointer;
-    background: none;
-    border: none;
-    font-size: 16px;
-}
-
-</style>
-
-<div class="search-area">
-    <input type="text" id="findInput" placeholder="Search employee..." class="input-box" onkeyup="searchUser()" autocomplete="off">
+<div class="search-wrap" style="position:relative; width:100%; font-family:sans-serif;">
+    <input type="text" id="findInp" placeholder="Search name or ID..." onkeyup="doSearch()" autocomplete="off" 
+        style="width:100%; padding:10px; border:1px solid #ccc; border-radius:5px; outline:focus;">
     
-    <div id="dataList" class="list-box">
+    <div id="dropBox" style="position:absolute; width:100%; max-height:150px; overflow-y:auto; background:#fff; display:none; border:1px solid #ddd; z-index:99; box-shadow:0 4px 10px rgba(27, 26, 26, 0.1);">
         <?php if (!empty($employees)): ?>
             <?php foreach ($employees as $row): 
                 $uID = $row['unique_id'] ?: 'N/A';
                 $name = htmlspecialchars($row['username']);
                 $rank = strtolower($row['rank'] ?? 'junior');
             ?>
-                <div class="item" onclick="pickUser('<?= $uID; ?>', '<?= $name; ?>', '<?= $rank; ?>')">
+                <div class="user-item" onclick="pick('<?= $uID; ?>', '<?= $name; ?>', '<?= $rank; ?>')" 
+                    style="display:flex; align-items:center; justify-content:space-between; padding:10px; cursor:pointer; border-bottom:1px solid #f4f4f4;">
                     <div>
                         <strong><?= $name; ?></strong> 
-                        <span class="id-tag">ID: <?= $uID; ?></span>
+                        <span style="background:#007bff; color:#fff; padding:2px 6px; border-radius:3px; font-size:10px;">ID: <?= $uID; ?></span>
                     </div>
-                    <span class="rank-tag rank-<?= $rank; ?>"><?= ucfirst($rank); ?></span>
+                    <span class="rank-tag rank-<?= $rank; ?>" style="font-size:10px; font-weight:bold; padding:2px 6px; border-radius:3px; background:#eee;"><?= ucfirst($rank); ?></span>
                 </div>
             <?php endforeach; ?>
         <?php endif; ?>
     </div>
 
-    <div id="showSelected" class="result-box">
+    <div id="selBox" style="display:none; align-items:center; justify-content:space-between; padding:10px; border:1px solid #ddd; border-radius:5px; background:#f9f9f9;">
         <div>
             Selected: <strong id="pickedName"></strong> 
-            <span id="pickedRank" class="rank-tag"></span>
+            <span id="pickedRank" style="font-size:10px; font-weight:bold; padding:2px 6px; border-radius:3px;"></span>
         </div>
-        <button type="button" class="close-btn" onclick="resetAll()">❌</button>
+        <button type="button" onclick="resetSearch()" style="background:none; border:none; cursor:pointer;">❌</button>
     </div>
 
-    <input type="hidden" name="employee_id" id="saveId">
+    <input type="hidden" name="employee_id" id="valId">
 </div>
 
-<script>
-function searchUser() {
-    let input = document.getElementById('findInput').value.toLowerCase();
-    let list = document.getElementById('dataList');
-    let items = document.getElementsByClassName('item');
-    
-    list.style.display = input.length > 0 ? 'block' : 'none';
+<style>
+    .user-item:hover { background:#9fe9c4 !important; }
+</style>
 
-    for (let i = 0; i < items.length; i++) {
-        let text = items[i].innerText.toLowerCase();
-        items[i].style.display = text.includes(input) ? 'flex' : 'none';
+<script>
+function doSearch() {
+    let val = document.getElementById('findInp').value.toLowerCase();
+    let box = document.getElementById('dropBox');
+    let list = document.getElementsByClassName('user-item');
+    
+    box.style.display = val.length > 0 ? 'block' : 'none';
+
+    for (let i = 0; i < list.length; i++) {
+        list[i].style.display = list[i].innerText.toLowerCase().includes(val) ? 'flex' : 'none';
     }
 }
 
-function pickUser(id, name, rank) {
-    document.getElementById('saveId').value = id;
+function pick(id, name, rank) {
+    document.getElementById('valId').value = id;
     document.getElementById('pickedName').innerText = name + " (ID: " + id + ")";
     
-    let tag = document.getElementById('pickedRank');
-    tag.innerText = rank.toUpperCase();
-    tag.className = "rank-tag rank-" + rank;
+    let r = document.getElementById('pickedRank');
+    r.innerText = rank.toUpperCase();
+    r.style.background = "#eee"; 
 
-    document.getElementById('showSelected').style.display = 'flex';
-    document.getElementById('findInput').style.display = 'none';
-    document.getElementById('dataList').style.display = 'none';
+    document.getElementById('selBox').style.display = 'flex';
+    document.getElementById('findInp').style.display = 'none';
+    document.getElementById('dropBox').style.display = 'none';
 }
 
-function resetAll() {
-    document.getElementById('saveId').value = "";
-    document.getElementById('showSelected').style.display = 'none';
-    document.getElementById('findInput').style.display = 'block';
-    document.getElementById('findInput').value = "";
-    document.getElementById('findInput').focus();
+function resetSearch() {
+    document.getElementById('valId').value = "";
+    document.getElementById('selBox').style.display = 'none';
+    document.getElementById('findInp').style.display = 'block';
+    document.getElementById('findInp').value = "";
+    document.getElementById('findInp').focus();
 }
 
-document.addEventListener('click', function(e) {
-    if (!document.querySelector('.search-area').contains(e.target)) {
-        document.getElementById('dataList').style.display = 'none';
+document.addEventListener('click', (e) => {
+    if (!document.querySelector('.search-wrap').contains(e.target)) {
+        document.getElementById('dropBox').style.display = 'none';
     }
 });
 </script>
