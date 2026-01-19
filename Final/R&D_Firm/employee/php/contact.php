@@ -13,9 +13,27 @@
                 <li><a>About Us</a></li>
                 <li><a>Our services</a></li>
                 <li><a href = "browsejob.php">Browse job</a></li>
-                <li><a href = "Contact.php">Contact Us</a></li>
+                <li><a href = "contact.php">Contact Us</a></li>
             </ul>
         </nav>
+        <div class="form">
+        <h2>Contact Us</h2>
+        <form action="" method="POST">
+            <div class="label">
+                <label>Name</label>
+                <input type="text" name="name">
+            </div>
+            <div class="label">
+                <label>Email</label>
+                <input type="email" name="email">
+            </div>
 
+            <div class="label">
+                <label>Message</label>
+                <textarea name="message" roes="5"></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Send Message</button>
+        </form>
+</div>
 </body>
 </html>
