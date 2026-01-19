@@ -7,3 +7,25 @@
     border-collapse: collapse;
     background: #fff;
 }
+
+.messages-table th,
+.messages-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+    font-size: 14px;
+}
+
+.messages-table th {
+    background: #f4f4f4;
+    font-weight: 600;
+}
+
+.messages-table tr:nth-child(even) {
+    background: #fafafa;
+}
+
+.empty-row {
+    text-align: center;
+    color: #777;
+}
