@@ -1,3 +1,4 @@
+<?php include "../php/profile.php"; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
