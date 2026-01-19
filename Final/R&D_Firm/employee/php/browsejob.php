@@ -34,8 +34,8 @@ $result = mysqli_query($conn,$sql);
             <h1 class = "job-title">Browse Available Job</h1>
             <div class= "search">
                 <form method="post">
-                    <input type="text" name="search" value="<?php echo $search; ?>" >
-                    <input type="submit" value="Search" style="padding: 10px 20px;">
+                    <input class= "search_input" type="text" name="search" value="<?php echo $search; ?>" >
+                    <input class= "btn" type="submit" value="Search" style="padding: 10px 20px;">
                 </form>
             </div>
             <div class = "job_grid">
@@ -57,7 +57,8 @@ $result = mysqli_query($conn,$sql);
                     echo "NO job found";
                 }
                 ?>
-        <a href = "logout.php" class="logout_btn">Logout</a>
+            </div>
+        </div>
         <footer class="footer">
             <div class="footer-container">
                 <div class="footer-section">
