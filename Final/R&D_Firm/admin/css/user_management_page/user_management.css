@@ -55,3 +55,41 @@ body {
     color: #333;
     font-weight: bold;
 }
+.data-table td {
+    padding: 0.9rem 1rem;
+    border-bottom: 1px solid #eee;
+    vertical-align: top;
+    color: #222;
+    font-size: 14px;
+}
+
+.data-table tr:hover {
+    background: #fafafa;
+}
+
+.msg {
+    margin-top: 10px;
+    padding: 10px 12px;
+    background: #e9f7ef;
+    border: 1px solid #b7e2c7;
+    color: #1e7e34;
+    border-radius: 6px;
+    font-weight: 600;
+}
+
+.btn-delete {
+    display: inline-block;
+    padding: 6px 12px;
+    text-decoration: none;
+    background: #ce9f06;
+    color: #fff;
+    border-radius: 4px;
+    font-size: 13px;
+    border:10px solid transparent;
+    transition: transform 0.3s;
+}
+
+.btn-delete:hover {
+    background: #c82333;
+    transform: scale(1.05);
+}
