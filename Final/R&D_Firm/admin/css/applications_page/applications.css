@@ -55,3 +55,13 @@
     background-color: #4CAF50 !important;
     color: white !important;
 }
+
+
+.badge {
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.btn-blue { color: blue; }
+.btn-red { color: red; }
+.btn-green { color: green; }
