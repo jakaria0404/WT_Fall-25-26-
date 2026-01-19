@@ -12,11 +12,8 @@ if($_SESSION['role'] !== 'employee'){
     }
     exit();
 }
-
-$currentUser = $_SESSION['username'];
-$msg = "";
-
-if($_SERVER["REQUEST_METHOD"] == "POST"){
+if (isset($_GET['ajax'])) {
+    $currentUser = $_SESSION['username'];
     $new_fname = $_POST['first_name'];
     $new_lname = $_POST['last_name'];
     $new_email = $_POST['email'];
@@ -26,13 +23,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     
     if(mysqli_query($conn, $sql)){
         $_SESSION['username'] = $new_username;
-        $currentUser = $new_username;
-        $msg = "Profile updated successfully!";
+        echo "Profile updated successfully!";
     } else {
-        $msg = "Error updating profile.";
+        echo "Error updating profile.";
     }
+    exit();
 }
 
+$currentUser = $_SESSION['username'];
 $query = "SELECT * FROM users WHERE username = '$currentUser'";
 $result = mysqli_query($conn, $query);
 $user = mysqli_fetch_assoc($result);
@@ -50,7 +48,6 @@ $user = mysqli_fetch_assoc($result);
         <ul class="container">
             <li><a href="dashboard.php">Home</a></li>
             <li><a href="logout.php">Log Out</a></li>
-
         </ul>
     </nav>
 
@@ -60,34 +57,34 @@ $user = mysqli_fetch_assoc($result);
         <a href="myjob.php">My Job Application</a>
         <a href="task.php">Tasks</a>
     </div>
-    <h2 class ="profile">Welcome <?php echo $_SESSION['username'];?></h2>
+
+    <h2 class="profile">Welcome <span id="display_name"><?php echo $user['username'];?></span></h2>
 
     <div class="profile">
         <h2>Update Profile</h2>
-        
-        <?php if($msg != ""): ?>
-            <p style="color: green; text-align:center; font-weight: bold;"><?php echo $msg; ?></p>
-        <?php endif; ?>
+        <p id="msg" style="text-align:center; font-weight: bold;"></p>
 
-        <form method="POST">
+        <form id="profileForm">
             <div class="group">
                 <label>First Name</label><br>
-                <input type="text" name="first_name" value="<?php echo $user['first_name'] ?? ''?>"> 
+                <input type="text" name="first_name" id="fname" value="<?php echo $user['first_name'] ?? ''?>"> 
             </div>
             <div class="group">
                 <label>Last Name</label><br>
-                <input type="text" name="last_name" value="<?php echo $user['last_name'] ?? ''?>"> 
+                <input type="text" name="last_name" id="lname" value="<?php echo $user['last_name'] ?? ''?>"> 
             </div>
             <div class="group">
                 <label>Username</label><br>
-                <input type="text" name="username" value="<?php echo $user['username'] ?? ''?>"> 
+                <input type="text" name="username" id="uname" value="<?php echo $user['username'] ?? ''?>"> 
             </div>
             <div class="group">
                 <label>Email</label><br>
-                <input type="email" name="email" value="<?php echo $user['email'] ?? ''?>"> <br><br>
+                <input type="email" name="email" id="email" value="<?php echo $user['email'] ?? ''?>"> <br><br>
             </div>
-            <button type="submit" class="btn">Save Changes</button>
+            <button type="button" onclick="updateProfile()" class="btn">Save Changes</button>
         </form>
     </div>
+
+    <script src="../js/ajax_profile.js"></script>
 </body>
 </html>
