@@ -18,3 +18,10 @@
 
         <div class="page-content">
             <h2>Employee Management</h2>
+
+         <div class="filter-box">
+                <form method="GET">
+                    <div class="search-group">
+                        <label>Search:</label>
+                        <input type="text" name="search"><button type="submit" class="btn-search">Search</button>
+                    </div>
