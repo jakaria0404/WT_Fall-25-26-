@@ -14,22 +14,26 @@ if (isset($_POST['submit'])) {
     $userQuery = "SELECT unique_id FROM users WHERE username = '$user'";
     $userResult = mysqli_query($conn, $userQuery);
     $userData = mysqli_fetch_assoc($userResult);
-    $userId = $userData['user_id'];
+    $userId = $userData['unique_id']; 
 
-    $jobId = isset($_GET['id']) ? $_GET['id'] : 1; 
+    $jobId = $_GET['id']; 
 
     $cvName = $_FILES['cv_file']['name'];
     $fileTemp = $_FILES['cv_file']['tmp_name'];
     $folder = "../uploads/" . $cvName;
 
     if (move_uploaded_file($fileTemp, $folder)) {
-        $sql = "INSERT INTO job_applications (id, job_id, cv_link, portfolio_link, status, phase) 
+        $sql = "INSERT INTO job_applications (user_id, job_id, cv_link, portfolio_link, status, phase) 
                 VALUES ('$userId', '$jobId', '$folder', '$portfolio', 'pending', 'cv')";
         
         if (mysqli_query($conn, $sql)) {
             header("Location: browsejob.php");
             exit();
+        } else {
+            echo "Error: ";
         }
+    } else {
+        echo "File upload failed!";
     }
 }
 ?>
@@ -52,7 +56,7 @@ if (isset($_POST['submit'])) {
         <label>Portfolio Link</label>
         <input type="url" name="portfolio_link">
 
-        <button type="submit" name="submit" class="submitbtn">Submit</button>
+        <button type="submit" name="submit" class="submitbtn">Submit Application</button>
         <a href="browsejob.php" class="backbtn">Cancel</a>
     </form>
 </div>
