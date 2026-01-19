@@ -52,3 +52,5 @@
                     </div>
                 </form>
             </div>
+
+            <p>Total: <strong><?php echo $totalEmployees; ?></strong></p>
