@@ -45,9 +45,9 @@ if (isset($_POST['submit_task'])) {
     <nav class="navbar">
         <h2>NilKham</h2>
         <ul class="container">
-            <li><a href="dashboard.php">Home</a></li>
-            <li><a href="browsejob.php">Browse job</a></li>
-            <li><a href="profile.php">Profile</a></li>
+            <li><a href="home.php">Home</a></li>
+            <li><a href="logout.php">Log Out</a></li>
+
         </ul>
     </nav>
 
@@ -75,7 +75,7 @@ if (isset($_POST['submit_task'])) {
             <div class="card">
                 <h3><?php echo $row['title']; ?></h3>
                 <p><?php echo $row['description']; ?></p>
-                <p><strong>Status:</strong> <?php echo strtoupper($row['status']); ?></p>
+                <p><strong>Status:</strong> <?php echo $row['status']; ?></p>
                 
                 <div style="margin-top:10px;">
                         <form method="POST">
