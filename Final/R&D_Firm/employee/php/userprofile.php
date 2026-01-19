@@ -1,3 +1,38 @@
+<?php
+session_start();
+include "../db/db.php";
+
+if(!isset($_SESSION['username'])){
+    header("Location: login.php");
+    exit();
+}
+
+
+$currentUser = $_SESSION['username'];
+$msg = "";
+
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+    $new_fname = $_POST['first_name'];
+    $new_lname = $_POST['last_name'];
+    $new_email = $_POST['email'];
+    $new_username = $_POST['username'];
+
+    $sql = "UPDATE users SET first_name = '$new_fname', last_name = '$new_lname', email = '$new_email', username ='$new_username' WHERE username = '$currentUser'";
+    
+    if(mysqli_query($conn, $sql)){
+        $_SESSION['username'] = $new_username;
+        $currentUser = $new_username;
+        $msg = "Profile updated successfully!";
+    } else {
+        $msg = "Error updating profile.";
+    }
+}
+
+$query = "SELECT * FROM users WHERE username = '$currentUser'";
+$result = mysqli_query($conn, $query);
+$user = mysqli_fetch_assoc($result);
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,16 +45,15 @@
         <ul class="container">
             <li><a href="home.php">Home</a></li>
             <li><a href="browsejob.php">Browse job</a></li>
-            <li><a href="profile.php">Profile</a></li>
-
+            <li><a href="logout.php">Log Out</a></li>
         </ul>
     </nav>
 
     <div class="sidebar">
-        <a href="profile.php" style="background-color: #388e3c;">Profile</a>
-        <a href="myjob.php">My Job Application</a>
+        <a href="userprofile.php" style="background-color: #388e3c;">Profile</a>
+        <a href="userjob.php">My Job Application</a>
     </div>
-        <h2 class ="profile">Welcome <?php echo $_SESSION['username'];?></h2>
+    <h2 class ="profile">Welcome <?php echo $_SESSION['username'];?></h2>
 
     <div class="profile">
         <h2>Update Profile</h2>
