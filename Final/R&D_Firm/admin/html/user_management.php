@@ -18,6 +18,27 @@ if (isset($_GET['change_role']) && isset($_GET['id'])) {
         exit;
     }
 }
+if (isset($_GET['delete_id'])) {
+    $id = $_GET['delete_id'];
+    $my_id = $_SESSION['user_id'] ?? 0;
+
+    if ($id == $my_id) {
+        header("Location: user_management.php?msg=You cannot delete yourself!");
+        exit;
+    } else {
+        $check = mysqli_query($conn, "SELECT role FROM users WHERE id = $id");
+        $user = mysqli_fetch_assoc($check);
+
+        if ($user['role'] == 'admin') {
+            header("Location: user_management.php?msg=You cannot delete an admin!");
+            exit;
+        } else {
+            mysqli_query($conn, "DELETE FROM users WHERE id = $id");
+            header("Location: user_management.php?msg=User deleted!");
+            exit;
+        }
+    }
+}
 
 $result = mysqli_query($conn, "SELECT * FROM users ORDER BY created_at DESC");
 ?>
