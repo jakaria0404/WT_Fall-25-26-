@@ -93,3 +93,23 @@ body {
     background: #c82333;
     transform: scale(1.05);
 }
+
+.tag-admin {
+    background: #fff3cd;
+    color: #856404;
+    border: 1px solid #ffeeba;
+}
+
+.empty-row {
+    text-align: center;
+    color: #777;
+    padding: 14px 0;
+}
+
+select {
+    padding: 6px 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background: #fff;
+}
+
