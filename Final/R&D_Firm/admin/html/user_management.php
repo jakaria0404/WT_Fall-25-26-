@@ -3,6 +3,21 @@ session_start();
 include "../db/db.php";
 
 $message = isset($_GET['msg']) ? $_GET['msg'] : "";
+if (isset($_GET['change_role']) && isset($_GET['id'])) {
+    $id = $_GET['id'];
+    $role = $_GET['change_role'];
+    $my_id = $_SESSION['user_id'] ?? 0;
+
+    if ($id == $my_id && $role != 'admin') {
+        header("Location: user_management.php?msg=You cannot change your own role!");
+        exit;
+    } else {
+        $sql = "UPDATE users SET role = '$role' WHERE id = $id";
+        mysqli_query($conn, $sql);
+        header("Location: user_management.php?msg=Role updated!");
+        exit;
+    }
+}
 
 $result = mysqli_query($conn, "SELECT * FROM users ORDER BY created_at DESC");
 ?>
