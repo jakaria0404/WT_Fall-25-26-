@@ -40,6 +40,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $passErr = "Password is required";
     } else {
         $password = test_input($_POST["password"]);
+        if (strlen($password) < 6) {
+            $passErr = "Password must be at least 6 characters long";
+        }
     }
 
     if (empty($_POST["confirm_password"])) {
@@ -86,7 +89,6 @@ function test_input($data) {
 <!DOCTYPE html>
 <html>
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registration</title>
     <link rel="stylesheet" href="../css/register.css">
 </head>
