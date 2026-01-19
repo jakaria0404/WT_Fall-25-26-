@@ -1,3 +1,5 @@
+<?php include "../php/employees.php"; ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,4 +26,12 @@
                     <div class="search-group">
                         <label>Search:</label>
                         <input type="text" name="search"><button type="submit" class="btn-search">Search</button>
+                    </div>
+                       <div class="input-group">
+                        <label>Category:</label>
+                        <select name="category">
+                            <option value="all">All</option>
+                            <option value="developer" <?php if($category == 'developer') echo 'selected'; ?>>Developer</option>
+                            <option value="researcher" <?php if($category == 'researcher') echo 'selected'; ?>>Researcher</option>
+                        </select>
                     </div>
