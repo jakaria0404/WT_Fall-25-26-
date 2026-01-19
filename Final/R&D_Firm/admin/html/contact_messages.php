@@ -1,3 +1,11 @@
+<?php
+session_start();
+include "../db/db.php";
+
+$messages = mysqli_query($conn, "SELECT * FROM contact_messages ORDER BY id DESC");
+?>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,4 +32,27 @@
                         <th>Message</th>
                         <th>Date</th>
                     </tr>
-                </thead>
+                   </thead>
+                <tbody>
+                    <?php if ($messages && mysqli_num_rows($messages) > 0): ?>
+                        <?php while ($row = mysqli_fetch_assoc($messages)): ?>
+                            <tr>
+                                <td><?php echo $row['id']; ?></td>
+                                <td><?php echo htmlspecialchars($row['name']); ?></td>
+                                <td><?php echo htmlspecialchars($row['email']); ?></td>
+                                <td><?php echo htmlspecialchars($row['message']); ?></td>
+                                <td><?php echo $row['created_at']; ?></td>
+                            </tr>
+                        <?php endwhile; ?>
+                    <?php else: ?>
+                        <tr>
+                            <td colspan="5" class="empty-row">No messages found</td>
+                        </tr>
+                    <?php endif; ?>
+                </tbody>
+            </table>
+        </div>
+    </main>
+</div>
+</body>
+</html>
