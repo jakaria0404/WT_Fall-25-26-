@@ -1,10 +1,5 @@
 <?php
-session_start();
 include "../db/db.php";
-if(!isset($_SESSION['username'])){
-    header("Location: login.php");
-    exit();
-}
 $sql = "SELECT job_id, title ,description ,requirements, type FROM job_posts";
 $result = mysqli_query($conn,$sql);
 ?>
@@ -22,7 +17,7 @@ $result = mysqli_query($conn,$sql);
                 <li><a>About Us</a></li>
                 <li><a>Our services</a></li>
                 <li><a href = "browsejob.php">Browse job</a></li>
-                <li><a>Contact Us</a></li>
+                <li><a href = "contact.php">Contact Us</a></li>
             </ul>
         </nav>
         <div class = "job-section">
