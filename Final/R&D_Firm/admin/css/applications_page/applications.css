@@ -24,3 +24,14 @@
     color: #201c1c;
     font-size: 14px;
 }
+
+.tabs {
+    margin: 15px 0;
+}
+
+.tabs a {
+    margin-right: 10px;
+    text-decoration: none;
+    padding: 5px;
+    border-bottom: 2px solid transparent;
+}
