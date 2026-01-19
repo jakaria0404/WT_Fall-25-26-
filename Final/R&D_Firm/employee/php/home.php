@@ -13,25 +13,25 @@ include "../db/db.php";
          <nav class = "navbar">
             <h2>NilKham</h2>
             <ul class = "container">
-                <li><a>Home</a></li>
-                <li><a>About Us</a></li>
-                <li><a>Our services</a></li>
+                <li><a href = "home.php">Home</a></li>
                 <li><a href = "browsejob.php">Browse job</a></li>
                 <li><a href = "profile.php">Profile</a></li>
-                <li><a>Contact Us</a></li>
+                <li><a href = "contact.php">Contact Us</a></li>
             </ul>
         </nav>
-        <div class="hero-content">
-            <h1><span style="color: #4CAF50;">IMAGINATION</span> IS MORE IMPORTANT THAN KNOWLEDGE</h1>
-            <p>Together we the people achieve more than any single person could ever do alone.</p>
+        <div class = "main">
+            <div class="content">
+                <h1><span style="color: #4CAF50;">IMAGINATION</span> IS MORE IMPORTANT THAN KNOWLEDGE</h1>
+                <p>Together we the people achieve more than any single person could ever do alone.</p>
+                <a href = "login.php" class="get_started">Get Started</a>
+            </div>
         </div>
-        <a href = "login.php" class="get_started">Get Started</a>
 
         <footer class="footer">
             <div class="footer-container">
                 <div class="footer-section">
                     <h3>Location</h3>
-                    <p>123 Innovation Street<br>Tech City, TC 12345<br>Country</p>
+                    <p>123 Innovation Street<br>Tech City, Banani<br>Bangladesh</p>
                 </div>
                 <div class="footer-section">
                     <h3>Follow Us</h3>
