@@ -2,6 +2,24 @@
 session_start();
 include "../db/db.php";
 
+if (isset($_POST['send_payment'])) {
+    $emp_id = $_POST['employee_id'] ?? '';
+    $cash   = $_POST['cash'] ?? '';
+    $note   = $_POST['note'] ?? '';
+    $sender = $_SESSION['unique_id'] ?? 'NILKHAM AUTHOR';
+
+    if ($cash !== "") {
+        $sql = "INSERT INTO payments (employee_id, amount, description, paid_by)
+                VALUES ('$emp_id', '$cash', '$note', '$sender')";
+        mysqli_query($conn, $sql);
+        header("Location: payments.php?status=success");
+        exit();
+    } else {
+        header("Location: payments.php?status=error");
+        exit();
+    }
+}
+
 $query = "SELECT username, unique_id, email, rank FROM users WHERE role = 'employee'";
 $result = mysqli_query($conn, $query);
 $employees = [];
@@ -30,6 +48,17 @@ $field_name = 'emp_id';
         <div class="page-content">
             <div class="my-form-box">
                 <h3>Make a Payment</h3>
+
+                      <?php
+        if (isset($_GET['status'])) {
+            if ($_GET['status'] === 'success') {
+                echo "<p class='info-text'>Payment Done!</p>";
+            } elseif ($_GET['status'] === 'error') {
+                echo "<p class='info-text'>Payment Failed!</p>";
+            }
+        }
+        ?>
+        
                 <form method="post">
                     <label>Employee ID:</label>
                     <?php include "../php/employee_search.php"; ?>
