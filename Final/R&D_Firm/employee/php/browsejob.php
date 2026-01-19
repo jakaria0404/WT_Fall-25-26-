@@ -1,6 +1,16 @@
 <?php
 include "../db/db.php";
-$sql = "SELECT job_id, title ,description ,requirements, type FROM job_posts";
+
+$search="";
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $search = $_POST['search'];
+}
+if($search !=""){
+    $sql = "SELECT job_id, title, description, requirements, type FROM job_posts WHERE title LIKE '%$search%'";
+}
+else{
+    $sql = "SELECT job_id, title ,description ,requirements, type FROM job_posts";
+}
 $result = mysqli_query($conn,$sql);
 ?>
 <!DOCTYPE html>
@@ -14,14 +24,20 @@ $result = mysqli_query($conn,$sql);
             <h2>NilKham</h2>
             <ul class = "container">
                 <li><a href = "home.php">Home</a></li>
-                <li><a>About Us</a></li>
-                <li><a>Our services</a></li>
                 <li><a href = "browsejob.php">Browse job</a></li>
+                <li><a href = "profile.php">Profile</a></li>
                 <li><a href = "contact.php">Contact Us</a></li>
             </ul>
         </nav>
         <div class = "job-section">
-            <h1 class = "job-title"></h1>
+
+            <h1 class = "job-title">Browse Available Job</h1>
+            <div class= "search">
+                <form method="post">
+                    <input type="text" name="search" value="<?php echo $search; ?>" >
+                    <input type="submit" value="Search" style="padding: 10px 20px;">
+                </form>
+            </div>
             <div class = "job_grid">
                 <?php
                 if(mysqli_num_rows($result)>0){
