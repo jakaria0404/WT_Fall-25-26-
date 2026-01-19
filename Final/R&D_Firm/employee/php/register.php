@@ -3,18 +3,22 @@ session_start();
 include "../db/db.php";
 $success="";
 $error="";
-$fullname = $username = $email = $password = $confirm_password = "";
-$nameErr = $userErr = $emailErr = $passErr = $confPassErr = "";
+
+$first_name = $last_name = $username = $email = $password = $confirm_password = "";
+$first_nameerr = $last_nameerr = $userErr = $emailErr = $passErr = $confPassErr = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    if (empty($_POST["full_name"])) {
-        $nameErr = "Full Name is required";
+    if (empty($_POST["first_name"])) {
+        $first_nameerr = "First Name is required";
     } else {
-        $fullname = test_input($_POST["full_name"]);
-        if (!preg_match("/^[a-zA-Z ]*$/", $fullname)) {
-            $nameErr = "Only letters and white space allowed";
-        }
+        $first_name = test_input($_POST["first_name"]);
+    }
+
+    if (empty($_POST["last_name"])) {
+        $last_nameerr = "Last Name is required";
+    } else {
+        $last_name = test_input($_POST["last_name"]);
     }
 
     if (empty($_POST["username"])) {
@@ -40,31 +44,37 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (empty($_POST["confirm_password"])) {
         $confPassErr = "Please confirm your password";
-    } else {
+    } 
+    else {
         $confirm_password = test_input($_POST["confirm_password"]);
         if ($password !== $confirm_password) {
             $confPassErr = "Passwords do not match";
         }
     }
-    if(empty($nameErr) && empty($userErr) && empty($emailErr) && empty($passErr) && empty($confPassErr)){
+
+    if(empty($first_nameerr) && empty($last_nameerr) && empty($userErr) && empty($emailErr) && empty($passErr) && empty($confPassErr)){
         $checkDuplicate = "SELECT * FROM users WHERE email = '$email' OR username = '$username'";
         $duplicateresult = mysqli_query($conn, $checkDuplicate);
-        if($duplicateresult && mysqli_num_rows($duplicateresult)>0){
+        
+        if($duplicateresult && mysqli_num_rows($duplicateresult) > 0){
             $error = "Username or email already exists";
-        }
-        else{
-
-            $hassPassword= password_hash($password,PASSWORD_DEFAULT);
-            $sql = "INSERT INTO users (full_name, username, email, password) VALUES ('$fullname','$username', '$email', '$hassPassword')";
+        } 
+        else {
+            $year = date("y");
+            $random=rand(0,999);
+            $padded = str_pad($random,3,"0",STR_PAD_LEFT);
+            $unique_id = "NK-".$padded."-".$year;
+            $hassPassword = password_hash($password, PASSWORD_DEFAULT);
+            $sql = "INSERT INTO users (unique_id,first_name, last_name, username, email, password,role) 
+                    VALUES ('$unique_id','$first_name', '$last_name', '$username', '$email', '$hassPassword','user')";
+            
             if(mysqli_query($conn, $sql)){
                 header("Location: login.php");
                 exit();
+            } else {
+                $error = "Database Error: " . mysqli_error($conn);
             }
         }
-
-    }
-    else {
-        $error = "Registration failled :" .mysqli_error($conn);
     }
 }
 
@@ -77,10 +87,9 @@ function test_input($data) {
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registration with PHP Validation</title>
+    <title>Registration</title>
     <link rel="stylesheet" href="../css/register.css">
 </head>
-
 <body>
 
 <div class="register-container">
@@ -89,9 +98,13 @@ function test_input($data) {
         <p>Please fill in this form to create an account.</p>
         <hr>
 
-        <label>Full Name</label>
-        <input type="text" name="full_name" value="<?php echo $fullname;?>">
-        <span class="error"><?php echo $nameErr;?></span>
+        <label>First Name</label>
+        <input type="text" name="first_name" value="<?php echo $first_name;?>">
+        <span class="error"><?php echo $first_nameerr;?></span>
+
+        <label>Last Name</label>
+        <input type="text" name="last_name" value="<?php echo $last_name;?>">
+        <span class="error"><?php echo $last_nameerr;?></span>
 
         <label>Username</label>
         <input type="text" name="username" value="<?php echo $username;?>"> 
@@ -110,11 +123,9 @@ function test_input($data) {
         <span class="error"><?php echo $confPassErr;?></span>
 
         <button type="submit" name="submit" class="registerbtn">Register</button>
-        <a href="login.php" class="backbtn">Back to Login</a>
-
+        <p style="color:red;"><?php echo $error; ?></p>
+        <a href="home.php" class="backbtn">Back to Home</a>
     </form>
-
-
 </div>
 
 </body>
