@@ -1,6 +1,9 @@
 <?php
 session_start();
 include "../db/db.php";
+if($_SESSION['role'] == 'user'){
+    header("Location: userprofile.php");
+}
 if(!isset($_SESSION["username"])){
     header("Location: login.php");   
     exit();
