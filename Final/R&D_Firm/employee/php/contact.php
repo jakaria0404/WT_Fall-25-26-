@@ -34,6 +34,23 @@
             </div>
             <button type="submit" class="submit-btn">Send Message</button>
         </form>
+        <footer class="footer">
+            <div class="footer-container">
+                <div class="footer-section">
+                    <h3>Location</h3>
+                    <p>123 Innovation Street<br>Tech City, Banani<br>Bangladesh</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Follow Us</h3>
+                    <div class="social-links">
+                        <a class="social-icon">Instagram</a>
+                        <a class="social-icon">Facebook</a>
+                        <a class="social-icon">Twitter</a>
+                        <a class="social-icon">LinkedIn</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
 </div>
 </body>
 </html>
