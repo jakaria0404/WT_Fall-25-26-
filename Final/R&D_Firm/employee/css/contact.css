@@ -38,6 +38,56 @@ body {
 .container li a:hover {
     color: #4CAF50;
 }
+.form {
+    max-width: 500px;
+    margin: 60px auto;
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 8px;
+    font-family: Arial, sans-serif;
+}
+
+.form h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 25px;
+}
+
+.label {
+    margin-bottom: 15px;
+}
+
+.label label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+}
+
+.label input{
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+.submit-btn {
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.submit-btn:hover {
+    background-color: #45a049;
+}
 .footer {
     background: #1a1a1a;
     color: #fff;
