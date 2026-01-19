@@ -14,11 +14,10 @@ $userResult = mysqli_query($conn, $userQuery);
 $userData = mysqli_fetch_assoc($userResult);
 $userId = $userData['unique_id'];
 
-$sql = "SELECT job_posts.title, job_posts.type, job_applications.status, job_applications.phase, job_applications.created_at 
+$sql = "SELECT job_posts.title, job_posts.type, job_applications.status, job_applications.phase
         FROM job_applications 
         JOIN job_posts ON job_applications.job_id = job_posts.job_id 
-        WHERE job_applications.user_id = '$userId' 
-        ORDER BY job_applications.created_at DESC";
+        WHERE job_applications.user_id = '$userId'";
 
 $result = mysqli_query($conn, $sql);
 ?>
@@ -35,14 +34,13 @@ $result = mysqli_query($conn, $sql);
         <ul class="container">
             <li><a href="home.php">Home</a></li>
             <li><a href="browsejob.php">Browse job</a></li>
-            <li><a href="profile.php">Profile</a></li>
+            <li><a href="logout.php">Log Out</a></li>
         </ul>
     </nav>
 
     <div class="sidebar">
-        <a href="profile.php">Profile</a>
-        <a href="myjob.php" style="background-color: #45a049;">My Job Application</a>
- 
+        <a href="userprofile.php">Profile</a>
+        <a href="userjob.php" style="background-color: #45a049;">My Job Application</a>
     </div>
 
     <div class="content">
