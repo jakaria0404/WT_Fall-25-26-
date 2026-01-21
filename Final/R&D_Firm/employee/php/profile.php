@@ -9,6 +9,8 @@ if(!isset($_SESSION['username'])){
 if($_SESSION['role'] !== 'employee'){
     if($_SESSION['role'] == 'user'){
         header("Location: userprofile.php");
+    } elseif($_SESSION['role'] == 'admin'){
+        header("Location: ../../admin/html/dashboard.php");
     }
     exit();
 }
@@ -46,7 +48,7 @@ $user = mysqli_fetch_assoc($result);
     <nav class="navbar">
         <h2>NilKham</h2>
         <ul class="container">
-            <li><a href="dashboard.php">Home</a></li>
+            <li><a href="home.php">Home</a></li>
             <li><a href="logout.php">Log Out</a></li>
         </ul>
     </nav>

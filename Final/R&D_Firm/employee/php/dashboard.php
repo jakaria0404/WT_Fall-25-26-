@@ -1,6 +1,10 @@
 <?php
 session_start();
 include "../db/db.php";
+if($_SESSION['role'] == 'admin'){
+    header("Location: ../../admin/html/dashboard.php");
+    exit();
+}
 if($_SESSION['role'] == 'user'){
     header("Location: userprofile.php");
 }

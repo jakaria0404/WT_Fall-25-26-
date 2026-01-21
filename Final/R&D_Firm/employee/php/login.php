@@ -3,10 +3,11 @@ session_start();
 include "../db/db.php";
 
 if(isset($_SESSION["username"])){
-    if($_SESSION['role']=='user'){
+    if($_SESSION['role']=='admin'){
+        header("Location: ../../admin/html/dashboard.php");
+    } elseif($_SESSION['role']=='user'){
         header("Location: userprofile.php");
-    }
-    else{
+    } else{
         header("Location: profile.php");
     }
     exit();
@@ -36,14 +37,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if(password_verify($password, $row['password'])){
                 $_SESSION['username'] = $row['username'];
                 $_SESSION['role'] = $row['role'];
+                $_SESSION['user_id'] = $row['id'];
+                $_SESSION['unique_id'] = $row['unique_id'];
 
                 setcookie("user_login", $row['username'], time() + (86400 * 30), "/");
 
-                if($_SESSION['role']=='user'){
+                if($_SESSION['role']=='admin'){
+                    header("Location: ../../admin/html/dashboard.php");
+                    exit();
+                } else if($_SESSION['role']=='user'){
                     header("Location: userprofile.php");
                     exit();
-                }
-                else if($_SESSION['role']=='employee'){
+                } else if($_SESSION['role']=='employee'){
                     header("Location: profile.php");
                     exit();
                 }
@@ -76,7 +81,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 
-    <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+    <form method="post" action="">
         
         <label>Username:</label>
         <input type="text" name="username" value="<?php echo $username;?>">

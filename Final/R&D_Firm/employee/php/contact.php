@@ -43,9 +43,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <h2>NilKham</h2>
             <ul class = "container">
                 <li><a href = "home.php">Home</a></li>
-                <li><a>About Us</a></li>
-                <li><a>Our services</a></li>
                 <li><a href = "browsejob.php">Browse job</a></li>
+                <li><a href = "profile.php">Profile</a></li>
                 <li><a href = "contact.php">Contact Us</a></li>
             </ul>
         </nav>
@@ -63,7 +62,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <div class="label">
                 <label>Message</label>
-                <input type="text" name="text">
+                <input type="text" name="message">
             </div>
             <button type="submit" class="submit-btn">Send Message</button>
             </div>

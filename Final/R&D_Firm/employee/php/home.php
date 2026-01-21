@@ -23,7 +23,7 @@ include "../db/db.php";
             <div class="content">
                 <h1><span style="color: #4CAF50;">IMAGINATION</span> IS MORE IMPORTANT THAN KNOWLEDGE</h1>
                 <p>Together we the people achieve more than any single person could ever do alone.</p>
-                <a href = "login.php" class="get_started">Get Started</a>
+                <?php if(!isset($_SESSION['username'])): ?><a href = "login.php" class="get_started">Get Started</a><?php endif; ?>
             </div>
         </div>
 

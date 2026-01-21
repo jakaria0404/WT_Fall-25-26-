@@ -14,7 +14,7 @@ $userResult = mysqli_query($conn, $userQuery);
 $userData = mysqli_fetch_assoc($userResult);
 $userId = $userData['unique_id'];
 
-$sql = "SELECT job_posts.title, job_posts.type, job_applications.status, job_applications.phase
+$sql = "SELECT job_posts.title, job_posts.type, job_applications.status
         FROM job_applications 
         JOIN job_posts ON job_applications.job_id = job_posts.job_id 
         WHERE job_applications.user_id = '$userId'";
@@ -51,7 +51,6 @@ $result = mysqli_query($conn, $sql);
                     <th><b>Job Title</b></th>
                     <th><b>Type</b></th>
                     <th><b>Status</b></th>
-                    <th><b>Phase</b></th>
                 </tr>
                 <?php 
                 if ($result && mysqli_num_rows($result) > 0) {
@@ -61,12 +60,11 @@ $result = mysqli_query($conn, $sql);
                         <td><?php echo $row['title']; ?></td>
                         <td><?php echo $row['type']; ?></td>
                         <td><?php echo $row['status']; ?></td>
-                        <td><?php echo $row['phase']; ?></td>
                     </tr>
                 <?php 
                     } 
                 } else {
-                    echo "<tr><td colspan='4' style='text-align:center;'>No applications found.</td></tr>";
+                    echo "<tr><td colspan='3' style='text-align:center;'>No applications found.</td></tr>";
                 } 
                 ?>
             </table>

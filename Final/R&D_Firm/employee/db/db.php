@@ -2,7 +2,7 @@
 $host="localhost";
 $user="root";
 $pass="";
-$dbname="r&d";
+$dbname="r&d_firm";
  
 $conn = new mysqli($host,$user,$pass,$dbname);
  
