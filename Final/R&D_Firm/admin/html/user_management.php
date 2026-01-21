@@ -1,0 +1,112 @@
+<?php
+include "../php/auth.php";
+include_once "../db/db.php";
+
+$message = isset($_GET['msg']) ? $_GET['msg'] : "";
+if (isset($_GET['change_role']) && isset($_GET['id'])) {
+    $id = $_GET['id'];
+    $role = $_GET['change_role'];
+    $my_id = $_SESSION['user_id'] ?? 0;
+
+    if ($id == $my_id && $role != 'admin') {
+        header("Location: user_management.php?msg=You cannot change your own role!");
+        exit;
+    } else {
+        $sql = "UPDATE users SET role = '$role' WHERE id = $id";
+        mysqli_query($conn, $sql);
+        header("Location: user_management.php?msg=Role updated!");
+        exit;
+    }
+}
+if (isset($_GET['delete_id'])) {
+    $id = $_GET['delete_id'];
+    $my_id = $_SESSION['user_id'] ?? 0;
+
+    if ($id == $my_id) {
+        header("Location: user_management.php?msg=You cannot delete yourself!");
+        exit;
+    } else {
+        $check = mysqli_query($conn, "SELECT role FROM users WHERE id = $id");
+        $user = mysqli_fetch_assoc($check);
+
+        if ($user['role'] == 'admin') {
+            header("Location: user_management.php?msg=You cannot delete an admin!");
+            exit;
+        } else {
+            mysqli_query($conn, "DELETE FROM users WHERE id = $id");
+            header("Location: user_management.php?msg=User deleted!");
+            exit;
+        }
+    }
+}
+
+$result = mysqli_query($conn, "SELECT * FROM users ORDER BY created_at DESC");
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Management</title>
+    <link rel="stylesheet" href="../css/dashboard_page/header.css">
+    <link rel="stylesheet" href="../css/dashboard_page/sidebar.css">
+    <link rel="stylesheet" href="../css/dashboard_page/dashboard.css">
+    <link rel="stylesheet" href="../css/user_management_page/user_management.css">
+</head>
+<body>
+
+<div class="dashboard-container">
+    <?php include "sidebar.php"; ?>
+
+    <main class="main-content">
+        <?php include "header.php"; ?>
+
+        <div class="page-content">
+            <h3>User Management</h3>
+
+            <?php if ($message != ""): ?>
+                <div class="msg"><?php echo $message; ?></div>
+            <?php endif; ?>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th>Created</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php while ($row = mysqli_fetch_assoc($result)): ?>
+                        <tr>
+                            <td><?php echo $row['username']; ?></td>
+                            <td><?php echo $row['email']; ?></td>
+                            <td>
+                                <select onchange="window.location.href='?id=<?php echo $row['id']; ?>&change_role='+this.value">
+                                    <option value="user" <?php if ($row['role'] == 'user') echo 'selected'; ?>>User</option>
+                                    <option value="employee" <?php if ($row['role'] == 'employee') echo 'selected'; ?>>Employee</option>
+                                    <option value="admin" <?php if ($row['role'] == 'admin') echo 'selected'; ?>>Admin</option>
+                                </select>
+                            </td>
+                            <td><?php echo $row['created_at']; ?></td>
+                            <td>
+                                <?php if ($row['id'] == ($_SESSION['user_id'] ?? 0)): ?>
+                                    <span class="tag-you">You</span>
+                                <?php elseif ($row['role'] == 'admin'): ?>
+                                    <span class="tag-admin">Admin</span>
+                                <?php else: ?>
+                                    <a href="?delete_id=<?php echo $row['id']; ?>" class="btn-delete" onclick="return confirm('Are you sure?')">Delete</a>
+                                <?php endif; ?>
+                            </td>
+                        </tr>
+                    <?php endwhile; ?>
+                </tbody>
+            </table>
+        </div>
+    </main>
+</div>
+
+</body>
+</html>

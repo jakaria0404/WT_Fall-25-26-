@@ -1,0 +1,71 @@
+.container {
+    width: 100%;
+    margin: auto;
+    font-family:sans-serif;
+    color: #201c1c;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    margin-top: 10px;
+}
+
+.data-table thead {
+    background: #cbd8e6;
+}
+
+.data-table th {
+    padding: 15px;
+    text-align: left;
+    font-weight: bold;
+    color: #110f0f;
+    border-bottom: 2px solid #dee2e6;
+    font-size: 14px;
+}
+
+.data-table td {
+    padding: 15px;
+    border-bottom: 1px solid #e9ecef;
+    color: #201c1c;
+    font-size: 14px;
+}
+
+.tabs {
+    margin: 15px 0;
+}
+
+.tabs a {
+    margin-right: 10px;
+    text-decoration: none;
+    padding: 5px;
+    border-bottom: 2px solid transparent;
+}
+.tabs a:hover {
+    border-bottom: 2px solid #17d606;
+}
+.btn, button {
+    padding: 6px 12px;
+    text-decoration: none;
+    border: 1px solid #ccc;
+    color: black;
+    background: #fdfdfd;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.active {
+    background-color: #4CAF50 !important;
+    color: white !important;
+}
+
+
+
+.badge { padding: 0.4rem 0.8rem; border-radius: 20px; font-size: 0.85rem; font-weight: 500; }
+
+.btn-blue { color: blue; }
+.btn-red { color: red; }
+.btn-green { color: green; }
+
+.btn-group { display: flex; gap: 0.5rem; margin-bottom: 1rem; }
