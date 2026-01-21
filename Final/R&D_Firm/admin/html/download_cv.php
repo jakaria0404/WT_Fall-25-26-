@@ -1,4 +1,6 @@
 <?php
+include "../php/auth.php";
+
 $cv_link = $_GET['file'] ?? '';
 if ($cv_link) {
     $file = urldecode($cv_link);

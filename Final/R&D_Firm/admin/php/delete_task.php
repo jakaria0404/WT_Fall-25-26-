@@ -1,5 +1,6 @@
 <?php
-include "../db/db.php";
+include "auth.php";
+include_once "../db/db.php";
 
 if (isset($_GET['id'])) {
     $id = mysqli_real_escape_string($conn, $_GET['id']);

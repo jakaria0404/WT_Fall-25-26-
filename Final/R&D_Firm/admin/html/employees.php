@@ -74,19 +74,19 @@
                         <?php while ($row = mysqli_fetch_assoc($result)): ?>
                             <tr>
                                 <td><?php echo $row['unique_id']; ?></td>
-                                <td><?php echo $row['first_name']; ?></td>
+                                <td><?php echo $row['name']; ?></td>
                                 <td><?php echo $row['username']; ?></td>
                                 <td><span class="badge"><?php echo $row['category']; ?></span></td>
                                 <td><span class="badge rank-<?php echo $row['rank']; ?>"><?php echo $row['rank']; ?></span></td>
                                 <td class="action-cell">
                                     <select onchange="location = this.value;">
                                         <option disabled selected>Rank</option>
-                                        <option value="?id=<?php echo $row['id']; ?>&promote=1&new_rank=junior">Junior</option>
-                                        <option value="?id=<?php echo $row['id']; ?>&promote=1&new_rank=senior">Senior</option>
-                                        <option value="?id=<?php echo $row['id']; ?>&promote=1&new_rank=lead">Lead</option>
-                                        <option value="?id=<?php echo $row['id']; ?>&promote=1&new_rank=manager">Manager</option>
+                                        <option value="?uid=<?php echo $row['unique_id']; ?>&promote=1&new_rank=junior">Junior</option>
+                                        <option value="?uid=<?php echo $row['unique_id']; ?>&promote=1&new_rank=senior">Senior</option>
+                                        <option value="?uid=<?php echo $row['unique_id']; ?>&promote=1&new_rank=lead">Lead</option>
+                                        <option value="?uid=<?php echo $row['unique_id']; ?>&promote=1&new_rank=manager">Manager</option>
                                     </select>
-                                    <a href="?id=<?php echo $row['id']; ?>&remove=1" class="btn-remove" onclick="return confirm('Confirm?');">Remove</a>
+                                    <a href="?uid=<?php echo $row['unique_id']; ?>&remove=1" class="btn-remove" onclick="return confirm('Confirm?');">Remove</a>
                                 </td>
                             </tr>
                         <?php endwhile; ?>

@@ -1,6 +1,6 @@
 <?php
-session_start();
-include "../db/db.php";
+include "../php/auth.php";
+include_once "../db/db.php";
 
 $messages = mysqli_query($conn, "SELECT * FROM contact_messages ORDER BY id DESC");
 ?>

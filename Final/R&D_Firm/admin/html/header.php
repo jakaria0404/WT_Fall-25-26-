@@ -3,13 +3,13 @@
         <h1>WELCOME! ADMIN CONTROL</h1>
     </div>
     <div class="top-bar-right">
-        <a href="../../Home/index.php" class="home-button">Home</a>
+        <a href="../../employee/php/home.php" class="home-button">Home</a>
         <div class="dropdown">
             <a href="#" class="dropdown-toggle" onclick="toggleHeaderDropdown(event)">Profile <span>▼</span></a>
             <ul class="dropdown-menu">
                 <li><a href="profile.php">Profile</a></li>
                 <li><a href="dashboard.php">Dashboard</a></li>
-                <li><a href="/auth/logout.php">Logout</a></li>
+                <li><a href="../../employee/php/logout.php">Logout</a></li>
             </ul>
         </div>
     </div>

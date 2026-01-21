@@ -1,5 +1,6 @@
 <?php
-include "../db/db.php";
+include "auth.php";
+include_once "../db/db.php";
 
 $id = mysqli_real_escape_string($conn, $_GET['id']);
 $res = mysqli_query($conn, "SELECT * FROM tasks WHERE id = '$id'");

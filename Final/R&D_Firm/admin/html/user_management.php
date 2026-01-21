@@ -1,6 +1,6 @@
 <?php
-session_start();
-include "../db/db.php";
+include "../php/auth.php";
+include_once "../db/db.php";
 
 $message = isset($_GET['msg']) ? $_GET['msg'] : "";
 if (isset($_GET['change_role']) && isset($_GET['id'])) {

@@ -1,6 +1,6 @@
 <?php
-session_start();
-include "../db/db.php";
+include "../php/auth.php";
+include_once "../db/db.php";
 
 if (isset($_POST['send_payment'])) {
     $emp_id = $_POST['employee_id'] ?? '';

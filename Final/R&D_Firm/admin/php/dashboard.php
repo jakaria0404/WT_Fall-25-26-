@@ -1,7 +1,5 @@
 <?php 
-session_start();
-
-include "../db/db.php";
+include "auth.php";
 
 $appSql = "SELECT COUNT(*) as total FROM job_applications";
 $appResult = mysqli_query($conn, $appSql);

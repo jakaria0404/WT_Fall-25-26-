@@ -94,7 +94,7 @@
                                 <?php elseif($statusFilter == 'interview_selected'): ?>
                                     <a href="update_status.php?id=<?= $row['id'] ?>&action=pass&status=<?= htmlspecialchars($statusFilter) ?>" 
                                        class="btn-green" 
-                                       onclick="return confirm('Are you sure you want to mark this application as Passed?')">Pass</a>
+                                       onclick="return confirm('Are you sure you?')">Pass</a>
                                     <a href="update_status.php?id=<?= $row['id'] ?>&action=reject&status=<?= htmlspecialchars($statusFilter) ?>" 
                                        class="btn-red"
                                        onclick="return confirm('Are you sure?')">Reject</a>

@@ -1,6 +1,5 @@
 <?php
-session_start();
-include "../db/db.php";
+include "auth.php";
 
 $statusFilter = isset($_GET['status']) ? $_GET['status'] : 'pending';
 $typeFilter = isset($_GET['type']) ? $_GET['type'] : 'all';

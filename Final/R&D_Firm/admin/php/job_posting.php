@@ -1,7 +1,5 @@
 <?php
-session_start();
-
-include "../db/db.php";
+include "auth.php";
 function test_input($data, $conn) {
     $data = trim($data);
     $data = stripslashes($data);

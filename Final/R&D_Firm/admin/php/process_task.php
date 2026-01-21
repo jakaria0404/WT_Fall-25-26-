@@ -1,7 +1,5 @@
 <?php
-session_start();
-
-include "../db/db.php";
+include "auth.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $title = mysqli_real_escape_string($conn, $_POST['title']);

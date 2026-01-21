@@ -31,9 +31,8 @@
 
     <input type="hidden" name="employee_id" id="valId">
 </div>
-
 <style>
-    .user-item:hover { background:#9fe9c4 !important; }
+    .user-item:hover { background: #9fe9c4 !important; }
 </style>
 
 <script>

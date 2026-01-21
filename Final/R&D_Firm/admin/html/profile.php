@@ -23,7 +23,8 @@
             <div class="profile-container">
                 <div class="profile-info">
                     <h2>Profile Information</h2>
-                    <form method="post" action="" class="profile-form">
+                    <div id="msg"></div>
+                    <form method="post" action="" class="profile-form" id="profileForm" onsubmit="event.preventDefault(); updateProfile();">
                         <div class="form-group">
                             <label>User ID:</label>
                             <input type="text" value="<?php echo htmlspecialchars($user['unique_id'] ?? 'N/A'); ?>" disabled>
@@ -38,17 +39,17 @@
                         
                         <div class="form-group">
                             <label>First Name:</label>
-                            <input type="text" name="first_name" value="<?php echo htmlspecialchars($user['first_name'] ?? ''); ?>" required>
+                            <input type="text" name="first_name" id="first_name" value="<?php echo htmlspecialchars($user['first_name'] ?? ''); ?>" required>
                         </div>
                         
                         <div class="form-group">
                             <label>Last Name:</label>
-                            <input type="text" name="last_name" value="<?php echo htmlspecialchars($user['last_name'] ?? ''); ?>" required>
+                            <input type="text" name="last_name" id="last_name" value="<?php echo htmlspecialchars($user['last_name'] ?? ''); ?>" required>
                         </div>
                         
                         <div class="form-group">
                             <label>Email:</label>
-                            <input type="email" name="email" value="<?php echo htmlspecialchars($user['email']); ?>" required>
+                            <input type="email" name="email" id="email" value="<?php echo htmlspecialchars($user['email']); ?>" required>
                         </div>
                         
                         <h3>Change Password</h3>
@@ -68,6 +69,7 @@
                     </form>
                 </div>
             </div>
+            <script src="../js/ajax_profile.js"></script>
             </div>
         </main>
     </div>
